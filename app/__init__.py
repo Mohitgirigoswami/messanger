@@ -1,4 +1,3 @@
-
 from flask import Flask
 from flask_socketio import SocketIO
 from flask_session import Session
@@ -6,6 +5,8 @@ from flask_wtf import CSRFProtect
 from .models import db
 from .auth import auth_bp
 from .main import main_bp
+
+socketio = SocketIO()  # Create at module level
 
 def create_app():
     app = Flask(__name__)
@@ -18,7 +19,9 @@ def create_app():
     db.init_app(app)
     csrf = CSRFProtect(app)
     Session(app)
-    socketio = SocketIO(app)
+    socketio.init_app(app)  # Initialize here
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
-    return app, socketio
+    from app.main.events import register_events
+    register_events(socketio)  # <-- Register events here
+    return app

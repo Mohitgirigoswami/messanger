@@ -1,49 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container center-div flex-column" id="mainhome">
-    <form method="post">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <div class="form-group">
-            <label for="friend_username">search</label>
-            <input type="text" id="username_to_search" value="{{username_to_search}}" name="username_to_search" required
-                placeholder="Enter friend's username">
-            <input type="submit" value="Search" id="search_friend" class="btn">
-        </div>
-    </form>
-    {% if has_searched %}
-    <div class="search-results">
-        {% if search_results %}
-        <h2>Search Results</h2>
-        <ul>
-            {% for user in search_results %}
-            <li>
-                {{ user.username }}
-                {% if user.username != current_user.username %}
-                <a href="">add friend</a>
-                {%endif%}
-            </li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <p>No users found.</p>
-        {% endif %}
-        {%endif%}
-        <div class="container flex-column" id="friends_list">
-            {% if friends %}
-            <h2>Friends List</h2>
-            <ul>
-                {% for friend in friends %}
-                <li>
-                    <a href="{{ url_for('main.chat', username=friend.username) }}">{{ friend.username }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <p>No friends found.</p>
-            {% endif %}
-
-        </div>
-    </div>
-
+<div class="cards-wrapper center-div">
+    <a href="{{url_for('main.search')}}" class="search no-decoration" >
+        <div class="card"><span>search for new friends</span></div>
+    </a>
+    {%for friend in friends%}
+    <a href="" class="no-decoration">
+        
+    <div class="card"><span>{{friend.username}}</span></div></a>
+    {%endfor%}
+</div>  
     {% endblock %}

@@ -60,3 +60,55 @@ button:hover {
 .flex-column{
     flex-direction: column;
 }
+
+/* Card container with flex and wrapping */
+.cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px 0;
+}
+
+/* Card style for anchor-wrapped content */
+.card {
+    
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    padding: 24px 20px;
+    min-width: 300px;
+    max-width: 400px;
+    margin: 0;
+    text-align: left;
+    transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+    text-decoration: none;
+    color: #222;
+    display: block;
+    cursor: pointer;
+    border: 1px solid #eaeaea;
+    font-family: inherit;
+}
+
+.card:hover, .card:focus {
+    box-shadow: 0 6px 24px rgba(0,123,255,0.18);
+    transform: translateY(-6px) scale(1.04);
+    background: #f5faff;
+    border-color: #b3d7ff;
+    outline: none;
+}
+
+.card span, .card h3, .card p {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: inherit;
+    word-break: break-word;;
+}
+
+.no-decoration {
+    text-decoration: none !important;
+}
+
