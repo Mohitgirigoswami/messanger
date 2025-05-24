@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container center-div">
+    <form action="" method="POST" style="width:100%;">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <h2 style="text-align:center; margin-bottom: 24px;">Login</h2>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required autocomplete="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required autocomplete="current-password">
+        </div>
+        <button class="btn" type="submit">Login</button>
+    </form>
+</div>
+<div class="register-link container center-div flex-column">
+    {% if error %}<span style="color: red;">{{ error }}</span>{% endif %}
+    <p>New to our site?</p>
+    <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a></p>
+</div>
+{% endblock %}

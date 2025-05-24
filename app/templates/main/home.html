@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container center-div" id="mainhome">
+    <div class="container flex-column center-div" id="friends">
+        <form method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                <label for="friend_username">search</label>
+                <input type="text"  id="username_to_search" value="{{username_to_search}}" name="username_to_search"
+                    required placeholder="Enter friend's username">
+                <input type="submit" value="Search" id="search_friend" class="btn">
+            </div>
+        </form>
+
+        
+        <div class="container flex-column" id="friends_list">
+            {% if friends %}
+                <h2>Friends List</h2>
+                <ul>
+                    {% for friend in friends %}
+                        <li>
+                            <a href="{{ url_for('main.chat', username=friend.username) }}">{{ friend.username }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No friends found.</p>
+            {% endif %}
+    </div>
+
+    {% endblock %}

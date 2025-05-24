@@ -1,0 +1,7 @@
+Flask
+Flask-SocketIO
+Flask-SQLAlchemy
+Flask-Session
+Flask-WTF
+python-dotenv
+eventlet
