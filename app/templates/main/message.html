@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <span class="recipient" id="recipient_username">{{ recipient.username }}</span>
+    <div class="messages" id="messagesContainer">
+        {% for msg in messages %}
+            <div class="message{% if msg.sender_id == recipient.id %} received{% else %} sent{% endif %}">
+                {{ msg.text }}
+                <span class="timestamp">{{ msg.timestamp }}</span>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <span class="hidden" id="recipientId" style="display:hidden;">{{recipient.id}}</span>
+    <span class="hidden" id="senderId">{{session.get('id')}}</span>
+    <form onsubmit="send_message({{ recipient.id }}); return false;">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="form-group">
+            <textarea id="messageInput" name="message" class="form-control" rows="3" placeholder="Type your message..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
+{% endblock %}

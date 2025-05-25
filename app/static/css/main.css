@@ -158,3 +158,55 @@ button:hover {
     color: #a0a0a0;
     cursor: not-allowed;
 }
+
+/* General container for messages */
+.messages {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 75%;
+    word-wrap: break-word;
+}
+
+.message.sent {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.message.received {
+    background-color: #e0e0e0;
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+.timestamp {
+    font-size: 0.75em;
+    color: #888;
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+}
+
+
+/* Recipient username styling */
+.recipient {
+    font-size: 1.2em;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}

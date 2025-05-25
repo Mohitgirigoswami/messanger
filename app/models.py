@@ -15,3 +15,11 @@ class user_friend(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user_data.id'), nullable=False)
     friend_id = db.Column(db.Integer, db.ForeignKey('user_data.id'), nullable=False)
+    
+class Message(db.Model):
+    __tablename__ = 'messages'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey('user_data.id'), nullable=False)
+    recipient_id = db.Column(db.Integer, db.ForeignKey('user_data.id'), nullable=False)
+    text = db.Column(db.String(200), nullable=False)
+    timestamp = db.Column(db.DateTime, nullable=False)

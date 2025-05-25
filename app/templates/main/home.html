@@ -2,13 +2,13 @@
 
 {% block content %}
 <div class="cards-wrapper center-div">
-    <a href="{{url_for('main.search')}}" class="search no-decoration" >
+    <a href="{{ url_for('main.search') }}" class="search no-decoration">
         <div class="card"><span>search for new friends</span></div>
     </a>
-    {%for friend in friends%}
-    <a href="" class="no-decoration">
-        
-    <div class="card"><span>{{friend.username}}</span></div></a>
-    {%endfor%}
+    {% for friend in friends %}
+    <a href="{{ url_for('main.message', username=friend.username) }}" class="no-decoration">
+        <div class="card"><span>{{ friend.username }}</span></div>
+    </a>
+    {% endfor %}
 </div>  
     {% endblock %}
