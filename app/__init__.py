@@ -12,7 +12,7 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = "erjnjrnuergkjerngngjkngkjngnjrngjnjgntrkjg"
     app.config['WTF_CSRF_SECRET_KEY'] = "egtjtrnglerkgnklerngklerngklernlgklrgnl"
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///messanger.db'
     app.config["SESSION_TYPE"] = "sqlalchemy"
     app.config["SESSION_SQLALCHEMY"] = db
     app.config["SESSION_SQLALCHEMY_TABLE"] = "sessions"
