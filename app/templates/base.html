@@ -10,6 +10,16 @@
     <script src="{{url_for('static',filename='js/main.js')}}"></script><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="{{ url_for('main.index') }}" class="navbar-brand">Messenger</a>
+            <a href="{{ url_for('main.home') }}">Home</a>
+            <a href="{{ url_for('main.search') }}">Search</a>
+            <a href="{{ url_for('auth.login') }}">Login</a>
+            <a href="{{ url_for('auth.register') }}">Register</a>
+            <!-- Add more links as needed -->
+        </div>
+    </nav>
     {% block content %}{% endblock %}
 </body>
 </html>

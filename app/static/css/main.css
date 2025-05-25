@@ -8,7 +8,14 @@
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
 
+}
 
 .btn {
     width: 100%;
@@ -110,5 +117,34 @@ button:hover {
 
 .no-decoration {
     text-decoration: none !important;
+}
+
+/* Add to main.css */
+.navbar {
+    background: #007bff;
+    color: #fff;
+    padding: 12px 0;
+    margin-bottom: 24px;
+}
+.navbar-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 16px;
+}
+.navbar a:hover {
+    text-decoration: underline;
+}
+.navbar-brand {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-right: 32px;
 }
 
