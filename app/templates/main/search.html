@@ -22,13 +22,13 @@
     {% for user in search_results %}
     <div class="card">
         {{ user.username }} >> {{ user.first_name }} {{ user.last_name }}
-       
+
         {% if user.username != current_user.username %}
-        <button onclick="add_friend({{user.id}})" class="btn">ADD</button>
+        <button onclick="add_friend({{user.id}})"
+            class="btn{% if user.id is in frnd_id %} disabled{% endif %}">ADD</button>
         {%endif%}
     </div>
     {% endfor %}
-
     {% else %}
     <p>No users found.</p>
     {% endif %}

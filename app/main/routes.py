@@ -31,5 +31,8 @@ def search():
             Users.username.like(f"{to_search}%"),
             Users.id != session.get('id')
         ).all()
-        return render_template('main/search.html',has_searched=has_searched,current_user=current_user,username_to_search=to_search,search_results=search_results)
+        # Create a list of user IDs that are already friends with the current user
+        existing_friends = user_friend.query.filter_by(user_id=session.get('id')).all()
+        frnd_id = [f.friend_id for f in existing_friends]
+        return render_template('main/search.html',has_searched=has_searched,current_user=current_user,username_to_search=to_search,search_results=search_results,frnd_id= frnd_id)
     return render_template('main/search.html',has_searched=has_searched,current_user=current_user)
