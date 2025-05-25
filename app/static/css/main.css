@@ -168,6 +168,7 @@ button:hover {
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
+    scrollbar-width: none;
 }
 
 .message {

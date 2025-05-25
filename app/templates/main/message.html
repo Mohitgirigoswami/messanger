@@ -7,8 +7,7 @@
         {% for msg in messages %}
             <div class="message{% if msg.sender_id == recipient.id %} received{% else %} sent{% endif %}">
                 {{ msg.text }}
-                <span class="timestamp">{{ msg.timestamp }}</span>
-            </div>
+                 </div>
         {% endfor %}
     </div>
     
@@ -22,4 +21,14 @@
         <button type="submit" class="btn btn-primary">Send</button>
     </form>
 </div>
+<script>
+   
+    function scrollToBottom() {
+        const messagesContainer = document.getElementById('messagesContainer');
+        if (messagesContainer) {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+    }
+    scrollToBottom();
+    </script>
 {% endblock %}
