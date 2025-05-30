@@ -4,6 +4,7 @@ socket.on('connect', function () {
 });
 
 function add_friend(id) {
+        document.getElementById("btn_"+id).classList.add("disabled");
         socket.emit('add_friend', { friend_id: id });
 }
 socket.on('add_friend_response', function (data) {
@@ -31,11 +32,3 @@ function send_message(id) {
         document.getElementById('messageInput').value = '';
 }
 
-const textarea = document.getElementById("messageInput");
-const submitBtn = document.getElementById("submitBtnmsg");
-textarea.addEventListener("keypress", function (e) {
-        if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                submitBtn.click();
-        }
-});
