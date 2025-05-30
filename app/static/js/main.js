@@ -13,6 +13,9 @@ socket.on('add_friend_response', function (data) {
 
 socket.on('new_message', function (data) {
         console.log('New message received:', data);
+        if(data['recipient_id'] == parseInt(document.getElementById('senderId').textContent)){
+                has_read(data['sender_id']);
+        }
         console.log(parseInt(document.getElementById('recipientId').textContent), parseInt(document.getElementById('senderId').textContent));
         if ((data['recipient_id'] == parseInt(document.getElementById('recipientId').textContent) && data['sender_id'] == parseInt(document.getElementById('senderId').textContent)) || (data['recipient_id'] == parseInt(document.getElementById('senderId').textContent) && data['sender_id'] == parseInt(document.getElementById('recipientId').textContent))) {
                 console.log('Message is for this chat');
@@ -32,3 +35,6 @@ function send_message(id) {
         document.getElementById('messageInput').value = '';
 }
 
+function has_read(id) {
+        socket.emit('has_read', { friend_id: id });
+}

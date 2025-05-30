@@ -1,4 +1,4 @@
-.container{
+.container {
     color: #000;
     background-color: #fff;
     font-family: Arial, sans-serif;
@@ -6,9 +6,10 @@
     margin: 40px auto;
     padding: 24px 32px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
-body{
+
+body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
@@ -33,12 +34,12 @@ button:hover {
     background-color: #0056b3;
 }
 
-.center-div{
+.center-div {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    width:100%;
+    width: 100%;
 }
 
 .form-group {
@@ -64,7 +65,8 @@ button:hover {
     border-color: #007BFF;
     outline: none;
 }
-.flex-column{
+
+.flex-column {
     flex-direction: column;
 }
 
@@ -80,10 +82,10 @@ button:hover {
 
 /* Card style for anchor-wrapped content */
 .card {
-    
+
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
     padding: 24px 20px;
     min-width: 300px;
     max-width: 400px;
@@ -98,21 +100,25 @@ button:hover {
     font-family: inherit;
 }
 
-.card:hover, .card:focus {
-    box-shadow: 0 6px 24px rgba(0,123,255,0.18);
+.card:hover,
+.card:focus {
+    box-shadow: 0 6px 24px rgba(0, 123, 255, 0.18);
     transform: translateY(-6px) scale(1.04);
     background: #f5faff;
     border-color: #b3d7ff;
     outline: none;
 }
 
-.card span, .card h3, .card p {
+.card span,
+.card h3,
+.card p {
     margin: 0;
     padding: 0;
     font-size: 1rem;
     font-weight: 500;
     color: inherit;
-    word-break: break-word;;
+    word-break: break-word;
+    ;
 }
 
 .no-decoration {
@@ -126,6 +132,7 @@ button:hover {
     padding: 12px 0;
     margin-bottom: 24px;
 }
+
 .navbar-container {
     max-width: 900px;
     margin: 0 auto;
@@ -133,27 +140,31 @@ button:hover {
     align-items: center;
     gap: 24px;
 }
+
 .navbar a {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
     margin-right: 16px;
 }
+
 .navbar a:hover {
     text-decoration: underline;
 }
+
 .navbar-brand {
     font-size: 1.3em;
     font-weight: bold;
     margin-right: 32px;
 }
 
-.disabled{
+.disabled {
     background-color: #e0e0e0;
     color: #a0a0a0;
     cursor: not-allowed;
 }
-.disabled:hover{
+
+.disabled:hover {
     background-color: #e0e0e0;
     color: #a0a0a0;
     cursor: not-allowed;
@@ -169,7 +180,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     scrollbar-width: none;
-    
+
 }
 
 .message {
@@ -212,9 +223,12 @@ button:hover {
 .hidden {
     display: none;
 }
+
 #messageInput {
     width: 395px;
     height: 50px;
-    resize: none;      /* disables manual resizing */
-    overflow: auto;    /* adds scrollbar if needed */
-  }
+    resize: none;
+    /* disables manual resizing */
+    overflow: auto;
+    /* adds scrollbar if needed */
+}

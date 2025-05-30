@@ -25,10 +25,10 @@
         </div>
         <button type="submit" class="btn">Register</button>
     </form>
-</div>
+</div>{% if error %}
 <div class="container center-div flex-column">
-    {% if error %}
-        <span style="color: red;">{{ error }}</span>
-    {% endif %}
-</div>
+
+    <span style="color: red;">{{ error }}</span>
+
+</div>{% endif %}
 {% endblock %}

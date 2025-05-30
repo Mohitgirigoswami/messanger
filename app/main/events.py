@@ -13,7 +13,18 @@ def register_events(socketio):
             print(f"User {user_id} connected and joined room user_{user_id}")
         else:
             print("User connected but no session id found")
-
+    
+    @socketio.on("has_read")
+    def handle_read(data):
+        messages_to_update = Message.query.filter(
+                    Message.recipient_id == session.get('id'),
+                    Message.sender_id == data.get('friend_id'),
+                    Message.read == False # Only update unread messages
+                ).all()
+        for msg in messages_to_update:
+            msg.read = True
+        db.session.commit()    
+    
     @socketio.on("add_friend")
     def add_friend(data):
         print("h")
