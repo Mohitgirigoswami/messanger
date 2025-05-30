@@ -22,5 +22,5 @@ class Message(db.Model):
     sender_id = db.Column(db.Integer, db.ForeignKey('user_data.id'), nullable=False)
     recipient_id = db.Column(db.Integer, db.ForeignKey('user_data.id'), nullable=False)
     text = db.Column(db.String(200), nullable=False)
-    read = db.Column(db.Boolean, nullable=False, default=True) # Corrected line
+    read = db.Column(db.Boolean, nullable=False, default=False) # Corrected line
     timestamp = db.Column(db.DateTime, nullable=False)
