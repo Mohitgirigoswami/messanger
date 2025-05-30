@@ -22,4 +22,4 @@ class Message(db.Model):
     sender_id = db.Column(db.Integer, db.ForeignKey('user_data.id'), nullable=False)
     recipient_id = db.Column(db.Integer, db.ForeignKey('user_data.id'), nullable=False)
     text = db.Column(db.String(200), nullable=False)
-    timestamp = db.Column(db.DateTime, nullable=False)
+    timestamp = db.Column(db.DateTime, nullable=False)N
