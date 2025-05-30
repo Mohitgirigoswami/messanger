@@ -161,7 +161,7 @@ button:hover {
 
 /* General container for messages */
 .messages {
-    max-height: 400px;
+    height: 400px;
     overflow-y: auto;
     border: 1px solid #ccc;
     padding: 10px;
@@ -169,6 +169,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     scrollbar-width: none;
+    
 }
 
 .message {
@@ -211,3 +212,9 @@ button:hover {
 .hidden {
     display: none;
 }
+#messageInput {
+    width: 395px;
+    height: 50px;
+    resize: none;      /* disables manual resizing */
+    overflow: auto;    /* adds scrollbar if needed */
+  }

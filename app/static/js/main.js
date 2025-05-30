@@ -13,12 +13,12 @@ socket.on('add_friend_response', function (data) {
 socket.on('new_message', function (data) {
         console.log('New message received:', data);
         console.log(parseInt(document.getElementById('recipientId').textContent), parseInt(document.getElementById('senderId').textContent));
-        if ((data['recipient_id']==parseInt(document.getElementById('recipientId').textContent) && data['sender_id']==parseInt(document.getElementById('senderId').textContent)) || (data['recipient_id']==parseInt(document.getElementById('senderId').textContent) && data['sender_id']==parseInt(document.getElementById('recipientId').textContent))) {
+        if ((data['recipient_id'] == parseInt(document.getElementById('recipientId').textContent) && data['sender_id'] == parseInt(document.getElementById('senderId').textContent)) || (data['recipient_id'] == parseInt(document.getElementById('senderId').textContent) && data['sender_id'] == parseInt(document.getElementById('recipientId').textContent))) {
                 console.log('Message is for this chat');
                 var parent = document.getElementById('messagesContainer');
                 var messageElement = document.createElement('div');
-                messageElement.className = 'message '+(data.sender_id == document.getElementById('senderId').textContent ? 'sent' : 'received');
-                messageElement.innerHTML = ` ${data.content}`;
+                messageElement.className = 'message ' + (data.sender_id == document.getElementById('senderId').textContent ? 'sent' : 'received');
+                messageElement.innerText = ` ${data.content}`;
                 parent.appendChild(messageElement);
                 parent.scrollTop = parent.scrollHeight;
         }
@@ -30,3 +30,12 @@ function send_message(id) {
         socket.emit('send_message', { recipient_id: id, content: message });
         document.getElementById('messageInput').value = '';
 }
+
+const textarea = document.getElementById("messageInput");
+const submitBtn = document.getElementById("submitBtnmsg");
+textarea.addEventListener("keypress", function (e) {
+        if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                submitBtn.click();
+        }
+});
