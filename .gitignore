@@ -3,3 +3,6 @@
 *.sqlite3
 /instance/*.db
 /instance/*.sqlite3
+/app/auth/__pycache__/
+/app/main/__pycache__/
+# Ignore Python cache files

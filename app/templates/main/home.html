@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="cards-wrapper center-div">
+<div class="cards-wrapper ">
     <a href="{{ url_for('main.search') }}" class="search no-decoration">
-        <div class="card"><span>search for new friends</span></div>
+        <div  style="min-width: 80vw;" class="card"><span>search for new friends</span></div>
     </a>
     {% for friend in friends %}
     <a href="{{ url_for('main.message', username=friend.username) }}" class="no-decoration">

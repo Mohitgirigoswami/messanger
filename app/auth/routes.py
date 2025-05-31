@@ -6,6 +6,7 @@ from . import auth_bp
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
+    session.clear()
     error = None
     if request.method == 'POST':
         username = request.form.get('username')
@@ -46,7 +47,7 @@ def register():
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', error=error)
 
-@auth_bp.route('/logout', methods=['POST'])
+@auth_bp.route('/logout', methods=['GET','POST'])
 def logout():
     session.clear()
     return redirect(url_for('auth.login'))
