@@ -56,6 +56,8 @@ def message(username):
 
 @main_bp.route('/user/<username>',methods=["get",'POST'])
 def profile(username):
+    if not session.get('id'):
+        return redirect(url_for("main.index"))
     user = Users.query.filter_by(username=username).first()
     is_self = 0 if user.id != session.get('id') else 1
     is_frnd = 1 if not is_self and user_friend.query.filter_by(user_id=session.get('id') ,friend_id = user.id).first() else 0
