@@ -9,6 +9,8 @@ class Users(db.Model):
     password_hash = db.Column(db.String(256), nullable=False)
     first_name = db.Column(db.String(100), nullable=True)
     last_name = db.Column(db.String(100), nullable=True)
+    bio = db.Column(db.String(512), nullable=True)
+    email = db.Column(db.String(20), nullable=True)
     
 class user_friend(db.Model):
     __tablename__ = 'user_friends'

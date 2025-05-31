@@ -4,7 +4,12 @@ socket.on('connect', function () {
 });
 
 function add_friend(id) {
-        document.getElementById("btn_" + id).classList.add("disabled");
+        btn = document.getElementById("add_frnd_prfl" );
+        if (btn) {
+                btn.classList.add('disabled');
+                btn.disabled = true;
+                btn.textContent = 'Request Sent';
+        }
         socket.emit('add_friend', { friend_id: id });
 }
 socket.on('add_friend_response', function (data) {

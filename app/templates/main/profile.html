@@ -1,0 +1,42 @@
+{% extends 'main/index.html' %}
+
+{% block title %}{{ user.username }}'s Profile - Nexlo{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    {% if user %}
+    <div class="profile-card">
+        <div class="profile-avatar">
+            <span>{{ user.username[0]|upper }}</span>
+        </div>
+        <h1 class="profile-username">{{ user.username }}</h1>
+        <p class="profile-name">{{ user.first_name + ' ' +user.last_name }}</p>
+
+        <div class="profile-actions">{%if not is_self%}
+            <a href="{{ url_for('main.message', username=user.username) }}">Message</a>
+            {% if not is_frnd %}
+            <button type="button" class="" id="add_frnd_prfl" onclick="add_friend({{ user.id }})">Add Friend</button>
+            {% else %}
+            <button type="button" class="disabled" id="add_frnd_prfl" disabled>Already Friends</button>
+            {% endif %}
+            {% else %}
+            <a href="{{ url_for('main.edit_profile') }}">Edit Profile</a>
+            {% endif%}
+        </div>
+
+        <div class="profile-details">
+            <h3>About {{ user.username }}</h3>
+            <strong>BIO : </strong><pre>{{user.bio}}</pre>
+        </div>
+    </div>
+    {% else %}
+    <div class="profile-card">
+        <h1 class="profile-username">User Not Found</h1>
+        <p>The profile you are looking for does not exist.</p>
+        <div class="profile-actions">
+            <a href="{{ url_for('main.search') }}">Search for users</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+    <div class="container center-div flex-column">
+        <h2>Edit Profile</h2>
+        <form method="post" class="form-wrapper"> 
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                <label for="first_name">Change First Name</label>
+                <input type="text" id="first_name" value="{{user.first_name}}" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Change last Name</label>
+                <input type="text" id="last_name" value="{{user.last_name}}" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Change username</label>
+                <input type="text" id="username" value="{{user.username}}" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="bio">Change bio</label>
+                <textarea rows = 4 type="text" placeholder="looks like you have no bio" id="bio" name="bio">{{user.bio}}</textarea>
+            </div>
+            <!-- <div class="form-group">
+                <label for="email">Change email</label>
+                <input type="email" id="email" name="email" required>
+                <button class="btn">verify</button>
+            </div> -->
+
+            <button type="submit" class="btn">save edits</button>
+        </form>
+    </div>
+
+    {% if error %}
+    <div class="container center-div flex-column" style="margin-top: 20px; padding: 15px;"> {# Added margin and padding for error box #}
+        <span style="color: red; font-weight: bold;">{{ error }}</span>
+    </div>
+    {% endif %}
+{% endblock %}

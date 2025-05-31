@@ -1,7 +1,15 @@
+/* --- General Body and Container Styles --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
 .container {
     color: #000;
     background-color: #fff;
-    font-family: Arial, sans-serif;
     max-width: 400px;
     margin: 40px auto;
     padding: 24px 32px;
@@ -9,15 +17,7 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-
-}
-
+/* --- Button Styles --- */
 .btn {
     width: 100%;
     padding: 10px 0;
@@ -30,10 +30,12 @@ body {
     transition: background 0.2s;
 }
 
-button:hover {
+.btn:hover,
+button:hover { /* Combines hover states for general .btn and direct <button> elements */
     background-color: #0056b3;
 }
 
+/* --- Utility & Layout Classes --- */
 .center-div {
     display: flex;
     justify-content: center;
@@ -42,6 +44,31 @@ button:hover {
     width: 100%;
 }
 
+.flex-column {
+    flex-direction: column;
+}
+
+.no-decoration {
+    text-decoration: none !important;
+}
+
+.disabled {
+    background-color: #e0e0e0;
+    color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+.disabled:hover {
+    background-color: #e0e0e0;
+    color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- Form Group Styles --- */
 .form-group {
     margin-bottom: 18px;
     display: flex;
@@ -66,11 +93,7 @@ button:hover {
     outline: none;
 }
 
-.flex-column {
-    flex-direction: column;
-}
-
-/* Card container with flex and wrapping */
+/* --- Card Styles (for search results/friends list) --- */
 .cards-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -80,9 +103,7 @@ button:hover {
     padding: 20px 0;
 }
 
-/* Card style for anchor-wrapped content */
 .card {
-
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
@@ -118,14 +139,9 @@ button:hover {
     font-weight: 500;
     color: inherit;
     word-break: break-word;
-    ;
 }
 
-.no-decoration {
-    text-decoration: none !important;
-}
-
-/* Add to main.css */
+/* --- Navbar Styles --- */
 .navbar {
     background: #007bff;
     color: #fff;
@@ -158,19 +174,7 @@ button:hover {
     margin-right: 32px;
 }
 
-.disabled {
-    background-color: #e0e0e0;
-    color: #a0a0a0;
-    cursor: not-allowed;
-}
-
-.disabled:hover {
-    background-color: #e0e0e0;
-    color: #a0a0a0;
-    cursor: not-allowed;
-}
-
-/* General container for messages */
+/* --- Messaging Styles --- */
 .messages {
     height: 400px;
     overflow-y: auto;
@@ -179,8 +183,12 @@ button:hover {
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
-    scrollbar-width: none;
+    scrollbar-width: none; /* Firefox */
+}
 
+/* For Webkit browsers (Chrome, Safari) */
+.messages::-webkit-scrollbar {
+    display: none;
 }
 
 .message {
@@ -211,8 +219,6 @@ button:hover {
     margin-top: 5px;
 }
 
-
-/* Recipient username styling */
 .recipient {
     font-size: 1.2em;
     font-weight: bold;
@@ -220,18 +226,14 @@ button:hover {
     margin-bottom: 10px;
 }
 
-.hidden {
-    display: none;
-}
-
-#messageInput {
+textarea {
     width: 395px;
     height: 50px;
     resize: none;
-    /* disables manual resizing */
     overflow: auto;
-    /* adds scrollbar if needed */
 }
+
+/* --- Notification Panel Styles --- */
 .notification-panel {
     position: fixed;
     top: 60px;
@@ -264,8 +266,8 @@ button:hover {
     padding: 10px;
     border-bottom: 1px solid #eee;
     transition: background-color 0.2s;
-    color: inherit ;
-    text-decoration: none   ;
+    color: inherit;
+    text-decoration: none;
 }
 
 .notification-item:hover {
@@ -273,10 +275,145 @@ button:hover {
     cursor: pointer;
 }
 
-
 .close-btn {
     background: none;
     border: none;
     font-size: 18px;
     cursor: pointer;
+}
+
+/* --- Profile Page Specific Styles --- */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #f0f2f5; /* Light grey background for the whole page */
+    min-height: calc(100vh - var(--navbar-height, 60px) - 24px); /* Use CSS variable for navbar height for consistency */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.profile-card {
+    background-color: #ffffff;
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow for depth */
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 550px; /* Slightly wider card for better content flow */
+    margin-top: 30px; /* Increased top margin */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth hover effects */
+}
+
+.profile-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.profile-avatar {
+    width: 130px; /* Slightly larger avatar */
+    height: 130px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    margin: 0 auto 25px; /* Increased bottom margin */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 52px; /* Larger initial for better visibility */
+    color: #555;
+    border: 4px solid #3367D6; /* Thicker border */
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for the avatar */
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-username {
+    font-size: 2.8em; /* Slightly larger and more impactful */
+    color: #2c3e50; /* Darker, more prominent color */
+    margin-bottom: 8px;
+    word-wrap: break-word;
+    font-weight: 700; /* Bolder for emphasis */
+}
+
+.profile-name {
+    font-size: 1.2em; /* Slightly larger */
+    color: #7f8c8d; /* Muted grey for secondary info */
+    margin-bottom: 30px; /* Increased bottom margin */
+    font-weight: 500;
+}
+
+.profile-actions {
+    display: flex; /* Use flexbox for better button alignment */
+    justify-content: center; /* Center buttons */
+    gap: 15px; /* Space between buttons */
+    margin-bottom: 30px; /* Space before details section */
+}
+
+.profile-actions a,
+.profile-actions button {
+    display: inline-flex; /* Use inline-flex for vertical alignment in buttons */
+    align-items: center;
+    justify-content: center;
+    background-color: #3498db; /* A vibrant blue for actions */
+    color: white;
+    padding: 12px 28px; /* More padding for a softer look */
+    border-radius: 8px; /* More rounded buttons */
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 600; /* Bolder text for actions */
+    border: none; /* Remove default button border */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+.profile-actions a:hover,
+.profile-actions button:not(.disabled):hover { /* Apply hover to non-disabled buttons */
+    background-color: #2980b9; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.profile-actions button.disabled {
+    background-color: #cccccc; /* Greyed out for disabled state */
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.profile-details {
+    margin-top: 35px; /* More space above details */
+    text-align: left;
+    border-top: 1px solid #ececec; /* Lighter, subtle top border */
+    padding-top: 25px; /* Padding above content after border */
+}
+
+.profile-details h3 {
+    color: #34495e; /* Darker heading color */
+    margin-bottom: 18px; /* More space below heading */
+    font-size: 1.6em; /* Larger heading */
+    font-weight: 600;
+}
+
+.profile-details strong {
+    color: #4a69bd; /* A distinct color for the label */
+    font-size: 1.05em;
+    margin-bottom: 8px; /* Space below "BIO:" label */
+    display: block; /* Make it a block element to take full width */
+}
+
+.profile-details pre {
+    margin-bottom: 0; /* Remove default bottom margin from pre */
+    line-height: 1.7; /* Increased line height for better readability */
+    color: #555;
+    background-color: #f8f8f8; /* Slightly different background for the bio area */
+    padding: 15px;
+    border-radius: 8px;
+    white-space: pre-wrap; /* This is crucial for newlines and wrapping */
+    word-break: break-word; /* Ensures long words don't overflow */
+    border: 1px solid #e0e0e0; /* Subtle border for the bio box */
+    font-family: inherit; /* Use the default font family for better integration */
+    font-size: 1em; /* Ensure font size is consistent */
 }

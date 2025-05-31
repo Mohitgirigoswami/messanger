@@ -1,34 +1,35 @@
 {% extends "base.html" %}
 
+{% block title %}Register{% endblock %}
+
 {% block content %}
-<div class="center-div container">
-    <h2>Register</h2>
-</div>
-<div class="register-container center-div container">
-    <form method="post">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <div class="form-group">
-            <label for="first_name">First Name</label>
-            <input type="text" id="first_name" name="first_name" required>
-        </div>
-        <div class="form-group">
-            <label for="last_name">Last Name</label>
-            <input type="text" id="last_name" name="last_name" required>
-        </div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <button type="submit" class="btn">Register</button>
-    </form>
-</div>{% if error %}
-<div class="container center-div flex-column">
+    <div class="container center-div flex-column"> {# Using flex-column to stack elements vertically #}
+        <h2>Register</h2>
+        <form method="post" class="form-wrapper"> {# Added a form-wrapper class for potential future styling #}
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+    </div>
 
-    <span style="color: red;">{{ error }}</span>
-
-</div>{% endif %}
+    {% if error %}
+    <div class="container center-div flex-column" style="margin-top: 20px; padding: 15px;"> {# Added margin and padding for error box #}
+        <span style="color: red; font-weight: bold;">{{ error }}</span>
+    </div>
+    {% endif %}
 {% endblock %}
