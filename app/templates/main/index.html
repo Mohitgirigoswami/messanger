@@ -16,8 +16,10 @@
             <a href="{{ url_for('main.home') }}" class="btn">Connect on Nexlo</a>
         </div></div>
     </div>
-    <div class="hero-image">
-        <img src="{{ url_for('static', filename='images/chat_illustration.png') }}" alt="People chatting on Nexlo" style="max-width: 100%; height: auto; border-radius: 8px;"></div>
+    {# The hero-image div containing the chat_illustration.png has been removed #}
+    <div class="hero-image" style="display:none;">
+        {# You can optionally keep this div but hide it, or remove it entirely #}
+    </div>
 
 <section class="features-section">
     <div class="feature-item">
@@ -42,11 +44,11 @@
     .hero-section {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content="center"; /* Changed to center content if no image */
         padding: 60px 40px;
         background-color: #f8f9fa; /* Light background for the hero section */
         color: #333;
-        text-align: left;
+        text-align: center; /* Changed to center text if no image */
         flex-wrap: wrap; /* Allow wrapping on smaller screens */
         gap: 30px; /* Space between content and image */
     }
@@ -54,7 +56,9 @@
     .hero-content {
         flex: 1; /* Allows content to grow */
         min-width: 300px; /* Ensures it doesn't shrink too much */
-        padding-right: 30px; /* Space from the image */
+        padding-right: 0; /* No padding needed if no image */
+        max-width: 800px; /* Constrain width for centered content */
+        margin: 0 auto; /* Center the content div */
     }
     
     .hero-section h1 {
@@ -78,12 +82,13 @@
 
     .cta-button-wrapper {
         max-width: 250px; /* Constrain button width */
+        margin: 0 auto; /* Center the button */
     }
 
     .hero-image {
-        flex: 1; /* Allows image to grow */
-        min-width: 300px; /* Ensures it doesn't shrink too much */
-        text-align: center;
+        /* This div is now hidden or removed, so its styles are less critical for layout */
+        /* If you removed the div completely, you can remove this block. */
+        display: none; /* Explicitly hide it */
     }
 
     .features-section {
@@ -137,11 +142,11 @@
             padding-right: 0;
             margin-bottom: 30px;
             min-width: unset; /* Allow it to shrink */
+            max-width: 100%; /* Full width on small screens */
         }
 
         .hero-image {
-            min-width: unset; /* Allow it to shrink */
-            max-width: 90%; /* Adjust image size on small screens */
+            display: none; /* Ensure it's hidden */
         }
 
         .hero-section h1 {
