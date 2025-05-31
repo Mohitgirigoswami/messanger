@@ -1,0 +1,5 @@
+# Ignore database files
+*.db
+*.sqlite3
+/instance/*.db
+/instance/*.sqlite3
