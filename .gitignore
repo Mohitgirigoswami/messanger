@@ -5,4 +5,5 @@
 /instance/*.sqlite3
 /app/auth/__pycache__/
 /app/main/__pycache__/
+/app/__pycache__/
 # Ignore Python cache files
