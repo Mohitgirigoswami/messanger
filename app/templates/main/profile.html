@@ -7,10 +7,7 @@
     {% if user %}
     <div class="profile-card">
         <div class="profile-avatar">
-            {% if user.avatar_id > 0 %}
             <img src="{{avatar_link}}" alt="Avatar">
-            {% else %}
-            <span>{{ user.username[0]|upper }}</span>{%endif%}
         </div>
         <h1 class="profile-username">{{ user.username }}</h1>
         <p class="profile-name">{{ user.first_name + ' ' +user.last_name }}</p>

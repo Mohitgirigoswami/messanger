@@ -21,11 +21,6 @@
                 {% endif %}
             </label>
             {% endfor %}
-            <label class="avatar-option" data-avatar-id="0">
-            <input type="radio" name="avtar_id" value="0" {% if user and user.avtar_id == 0 %}checked{% endif %}>
-                <div class="no-avatar-placeholder">
-                    <span class="no-avatar-icon">🚫</span> {# Using an emoji for a simple icon #}
-                </div></label>
         </div>
         <button type="submit" class="btn">select avtar</button>
     </form>
