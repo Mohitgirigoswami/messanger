@@ -11,6 +11,7 @@ class Users(db.Model):
     last_name = db.Column(db.String(100), nullable=True)
     bio = db.Column(db.String(512), nullable=True)
     email = db.Column(db.String(20), nullable=True)
+    avatar_id = db.Column(db.Integer,default = 0)
     
 class user_friend(db.Model):
     __tablename__ = 'user_friends'
@@ -26,3 +27,8 @@ class Message(db.Model):
     text = db.Column(db.String(200), nullable=False)
     read = db.Column(db.Boolean, nullable=False, default=False) # Corrected line
     timestamp = db.Column(db.DateTime, nullable=False)
+    
+class Avtar_links(db.Model):
+    __tablename__ = 'Avtar_links'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    link = db.Column(db.String(100), nullable=True)

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}choose avtar{% endblock %}
+
+{% block content %}
+<div class="container center-div flex-column">
+    <h2>choose avtar</h2>
+
+    <form method="post" class="form-wrapper">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="avatar-selection-grid">
+            {# Loop through 'avtars' as passed from the Flask route #}
+            {% for avatar in avtars %}
+            <label class="avatar-option" data-avatar-id="{{ avatar.id }}">
+                {# Check user.avtar_id against avatar.id to mark the current avatar as checked #}
+                <input type="radio" name="avtar_id" value="{{ avatar.id }}" {% if user and user.avtar_id == avatar.id %}checked{% endif %}>
+                <img src="{{ avatar.link }}" alt="Avatar">
+                
+                {% if "no_avatar.png" in avatar.link %}
+                <p>No Avatar</p>
+                {% endif %}
+            </label>
+            {% endfor %}
+            <label class="avatar-option" data-avatar-id="0">
+            <input type="radio" name="avtar_id" value="0" {% if user and user.avtar_id == 0 %}checked{% endif %}>
+                <div class="no-avatar-placeholder">
+                    <span class="no-avatar-icon">🚫</span> {# Using an emoji for a simple icon #}
+                </div></label>
+        </div>
+        <button type="submit" class="btn">select avtar</button>
+    </form>
+</div>
+{% if error %}
+<div class="container center-div flex-column" style="margin-top: 20px; padding: 15px;"> {# Added margin and padding for
+    error box #}
+    <span style="color: red; font-weight: bold;">{{ error }}</span>
+</div>
+{% endif %}
+{% endblock %}

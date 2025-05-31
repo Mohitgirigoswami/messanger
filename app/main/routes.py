@@ -1,6 +1,6 @@
 from flask import render_template, session, redirect, url_for,request
 from . import main_bp
-from app.models import Users,user_friend, db,Message
+from app.models import Users,user_friend, db,Message,Avtar_links
 from app.utils import is_valid
 
 @main_bp.route('/')
@@ -16,9 +16,9 @@ def home():
     friends = []
     for f in friend:
         user = Users.query.filter_by(id=f.friend_id).first()
-        if user  :
+        if user :
             friends.append(user)
-    return render_template("main/home.html",friends = friends) 
+    return render_template("main/home.html",friends = friends)
 
 @main_bp.route('/search',methods=["get",'POST'])
 def search():
@@ -59,7 +59,7 @@ def profile(username):
     user = Users.query.filter_by(username=username).first()
     is_self = 0 if user.id != session.get('id') else 1
     is_frnd = 1 if not is_self and user_friend.query.filter_by(user_id=session.get('id') ,friend_id = user.id).first() else 0
-    return render_template('main/profile.html',user=user,is_self=is_self,is_frnd=is_frnd)
+    return render_template('main/profile.html',user=user,is_self=is_self,is_frnd=is_frnd,avatar_link = (Avtar_links.query.filter_by(id=user.avatar_id).first()).link)
 
 @main_bp.route('/edit_profile',methods=["get",'POST'])
 def edit_profile():
@@ -96,3 +96,18 @@ def edit_profile():
             db.session.commit()
             return redirect(url_for('main.profile', username=user.username))
     return render_template('main/edit_profile.html',user = user , error = 0)
+
+@main_bp.route('/change_avtar',methods=["get",'POST'])
+def change_avtar():
+    if session.get('id') is None:
+        return redirect(url_for('auth.login'))
+    user = Users.query.filter_by(id=session.get('id')).first()
+    if request.method == 'POST':
+        new_avatar_id = int(request.form.get('avtar_id'))
+        user.avatar_id = new_avatar_id
+        db.session.commit()
+        return redirect(url_for('main.profile', username=user.username))
+    
+    all_avatars = Avtar_links.query.order_by(Avtar_links.id).all()
+    print(f"Avatars fetched from DB: {all_avatars}")
+    return render_template('main/change_avtar.html', avtars=all_avatars, user=user)

@@ -32,7 +32,9 @@
             <button type="submit" class="btn">save edits</button>
         </form>
     </div>
-
+    <div class="container center-div flex-column" style="margin-top: 20px; padding: 15px;"> {# Added margin and padding for error box #}
+        <a href="{{ url_for('main.change_avtar')}}" class="btn">change avtar</a>
+    </div>
     {% if error %}
     <div class="container center-div flex-column" style="margin-top: 20px; padding: 15px;"> {# Added margin and padding for error box #}
         <span style="color: red; font-weight: bold;">{{ error }}</span>

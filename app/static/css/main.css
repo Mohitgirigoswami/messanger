@@ -1,39 +1,119 @@
+/* --- CSS Variables --- */
+:root {
+    /* Colors */
+    --primary-color: #007BFF;
+    --primary-hover-color: #0056b3;
+    --text-color-dark: #333;
+    --text-color-light: #fff;
+    --background-color-light: #f4f4f4;
+    --background-color-white: #fff;
+    --border-color-light: #ccc;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.10);
+    --shadow-focus: rgba(0, 123, 255, 0.18);
+    --disabled-bg: #e0e0e0;
+    --disabled-text: #a0a0a0;
+    --profile-bg: #f0f2f5;
+    --profile-card-shadow: rgba(0, 0, 0, 0.15);
+    --profile-card-hover-shadow: rgba(0, 0, 0, 0.2);
+    --profile-avatar-border: #3367D6;
+    --profile-username-color: #2c3e50;
+    --profile-name-color: #7f8c8d;
+    --profile-action-blue: #3498db;
+    --profile-action-blue-hover: #2980b9;
+    --profile-details-heading: #34495e;
+    --profile-details-label: #4a69bd;
+    --bio-bg: #f8f8f8;
+    --bio-border: #e0e0e0;
+
+    /* Spacing */
+    --spacing-xs: 6px;
+    --spacing-sm: 8px;
+    --spacing-md: 10px;
+    --spacing-lg: 12px;
+    --spacing-xl: 15px;
+    --spacing-2xl: 18px;
+    --spacing-3xl: 20px;
+    --spacing-4xl: 24px;
+    --spacing-5xl: 25px;
+    --spacing-6xl: 30px;
+    --spacing-7xl: 32px;
+    --spacing-8xl: 40px;
+
+    /* Border Radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-full: 50%;
+
+    /* Font Sizes */
+    --font-size-sm: 0.75em;
+    --font-size-base: 1em;
+    --font-size-md: 15px;
+    --font-size-lg: 16px;
+    --font-size-xl: 1.1em;
+    --font-size-2xl: 1.2em;
+    --font-size-3xl: 1.3em;
+    --font-size-4xl: 1.6em;
+    --font-size-5xl: 2.8em;
+    --font-size-avatar-initial: 52px;
+
+    /* Transition */
+    --transition-fast: 0.2s;
+    --transition-medium: 0.3s;
+    --transition-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* --- General Body and Container Styles --- */
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--background-color-light);
+    color: var(--text-color-dark);
 }
 
 .container {
-    color: #000;
-    background-color: #fff;
+    color: var(--text-color-dark);
+    background-color: var(--background-color-white);
     max-width: 400px;
-    margin: 40px auto;
-    padding: 24px 32px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin: var(--spacing-8xl) auto;
+    padding: var(--spacing-4xl) var(--spacing-7xl);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 2px 8px var(--shadow-light);
 }
 
 /* --- Button Styles --- */
 .btn {
     width: 100%;
-    padding: 10px 0;
-    background-color: #007BFF;
-    color: #fff;
+    padding: var(--spacing-md) 0;
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-lg);
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background var(--transition-fast);
 }
 
+/* Combined hover states for general .btn and direct <button> elements */
 .btn:hover,
-button:hover { /* Combines hover states for general .btn and direct <button> elements */
-    background-color: #0056b3;
+button:hover {
+    background-color: var(--primary-hover-color);
 }
+
+.btn.disabled {
+    background-color: var(--disabled-bg);
+    color: var(--disabled-text);
+    cursor: not-allowed;
+}
+
+.btn.disabled:hover {
+    background-color: var(--disabled-bg);
+    color: var(--disabled-text);
+    cursor: not-allowed;
+}
+
 
 /* --- Utility & Layout Classes --- */
 .center-div {
@@ -52,44 +132,32 @@ button:hover { /* Combines hover states for general .btn and direct <button> ele
     text-decoration: none !important;
 }
 
-.disabled {
-    background-color: #e0e0e0;
-    color: #a0a0a0;
-    cursor: not-allowed;
-}
-
-.disabled:hover {
-    background-color: #e0e0e0;
-    color: #a0a0a0;
-    cursor: not-allowed;
-}
-
 .hidden {
     display: none;
 }
 
 /* --- Form Group Styles --- */
 .form-group {
-    margin-bottom: 18px;
+    margin-bottom: var(--spacing-2xl);
     display: flex;
     flex-direction: column;
 }
 
 .form-group label {
-    margin-bottom: 6px;
+    margin-bottom: var(--spacing-xs);
     font-weight: 500;
 }
 
 .form-group input {
-    padding: 8px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 15px;
-    transition: border-color 0.2s;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-md);
+    transition: border-color var(--transition-fast);
 }
 
 .form-group input:focus {
-    border-color: #007BFF;
+    border-color: var(--primary-color);
     outline: none;
 }
 
@@ -97,36 +165,36 @@ button:hover { /* Combines hover states for general .btn and direct <button> ele
 .cards-wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: var(--spacing-3xl);
     justify-content: center;
     align-items: flex-start;
-    padding: 20px 0;
+    padding: var(--spacing-3xl) 0;
 }
 
 .card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
-    padding: 24px 20px;
+    background: var(--background-color-white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 2px 12px var(--shadow-medium);
+    padding: var(--spacing-4xl) var(--spacing-3xl);
     min-width: 300px;
     max-width: 400px;
     margin: 0;
     text-align: left;
-    transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast), background var(--transition-fast);
     text-decoration: none;
     color: #222;
     display: block;
     cursor: pointer;
-    border: 1px solid #eaeaea;
+    border: 1px solid #eaeaea; /* Specific grey border */
     font-family: inherit;
 }
 
 .card:hover,
 .card:focus {
-    box-shadow: 0 6px 24px rgba(0, 123, 255, 0.18);
+    box-shadow: 0 6px 24px var(--shadow-focus);
     transform: translateY(-6px) scale(1.04);
-    background: #f5faff;
-    border-color: #b3d7ff;
+    background: #f5faff; /* Specific light blue background on hover */
+    border-color: #b3d7ff; /* Specific light blue border on hover */
     outline: none;
 }
 
@@ -135,7 +203,7 @@ button:hover { /* Combines hover states for general .btn and direct <button> ele
 .card p {
     margin: 0;
     padding: 0;
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     font-weight: 500;
     color: inherit;
     word-break: break-word;
@@ -143,10 +211,10 @@ button:hover { /* Combines hover states for general .btn and direct <button> ele
 
 /* --- Navbar Styles --- */
 .navbar {
-    background: #007bff;
-    color: #fff;
-    padding: 12px 0;
-    margin-bottom: 24px;
+    background: var(--primary-color);
+    color: var(--text-color-light);
+    padding: var(--spacing-lg) 0;
+    margin-bottom: var(--spacing-4xl);
 }
 
 .navbar-container {
@@ -154,14 +222,14 @@ button:hover { /* Combines hover states for general .btn and direct <button> ele
     margin: 0 auto;
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: var(--spacing-4xl);
 }
 
 .navbar a {
-    color: #fff;
+    color: var(--text-color-light);
     text-decoration: none;
     font-weight: 500;
-    margin-right: 16px;
+    margin-right: var(--spacing-lg);
 }
 
 .navbar a:hover {
@@ -169,18 +237,18 @@ button:hover { /* Combines hover states for general .btn and direct <button> ele
 }
 
 .navbar-brand {
-    font-size: 1.3em;
+    font-size: var(--font-size-3xl);
     font-weight: bold;
-    margin-right: 32px;
+    margin-right: var(--spacing-7xl);
 }
 
 /* --- Messaging Styles --- */
 .messages {
     height: 400px;
     overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 15px;
+    border: 1px solid var(--border-color-light);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
     display: flex;
     flex-direction: column;
     scrollbar-width: none; /* Firefox */
@@ -192,43 +260,43 @@ button:hover { /* Combines hover states for general .btn and direct <button> ele
 }
 
 .message {
-    margin-bottom: 8px;
-    padding: 8px 12px;
-    border-radius: 15px;
+    margin-bottom: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: 15px; /* Specific border-radius for messages */
     max-width: 75%;
     word-wrap: break-word;
 }
 
 .message.sent {
-    background-color: #dcf8c6;
+    background-color: #dcf8c6; /* Specific light green for sent messages */
     align-self: flex-end;
     margin-left: auto;
 }
 
 .message.received {
-    background-color: #e0e0e0;
+    background-color: var(--disabled-bg); /* Using disabled-bg for received messages */
     align-self: flex-start;
     margin-right: auto;
 }
 
 .timestamp {
-    font-size: 0.75em;
-    color: #888;
+    font-size: var(--font-size-sm);
+    color: #888; /* Specific grey for timestamp */
     display: block;
     text-align: right;
     margin-top: 5px;
 }
 
 .recipient {
-    font-size: 1.2em;
+    font-size: var(--font-size-2xl);
     font-weight: bold;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-md);
 }
 
 textarea {
-    width: 395px;
-    height: 50px;
+    width: 395px; /* Specific width for textarea */
+    height: 50px; /* Specific height for textarea */
     resize: none;
     overflow: auto;
 }
@@ -236,17 +304,17 @@ textarea {
 /* --- Notification Panel Styles --- */
 .notification-panel {
     position: fixed;
-    top: 60px;
-    right: 20px;
+    top: 60px; /* Specific top position */
+    right: 20px; /* Specific right position */
     width: 300px;
     max-height: 400px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    background-color: var(--background-color-white);
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Specific shadow for notification panel */
     z-index: 1000;
     overflow-y: auto;
-    padding: 10px;
+    padding: var(--spacing-md);
 }
 
 .notification-header {
@@ -254,31 +322,31 @@ textarea {
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-md);
 }
 
 .notification-list {
-    font-size: 14px;
+    font-size: 14px; /* Specific font size for notification list */
 }
 
 .notification-item {
     display: block;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    transition: background-color 0.2s;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid #eee; /* Specific border color for notification items */
+    transition: background-color var(--transition-fast);
     color: inherit;
     text-decoration: none;
 }
 
 .notification-item:hover {
-    background-color: #f5f5f5;
+    background-color: #f5f5f5; /* Specific background on hover for notification items */
     cursor: pointer;
 }
 
 .close-btn {
     background: none;
     border: none;
-    font-size: 18px;
+    font-size: 18px; /* Specific font size for close button */
     cursor: pointer;
 }
 
@@ -287,43 +355,43 @@ textarea {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px;
-    background-color: #f0f2f5; /* Light grey background for the whole page */
-    min-height: calc(100vh - var(--navbar-height, 60px) - 24px); /* Use CSS variable for navbar height for consistency */
-    box-sizing: border-box; /* Include padding in the element's total width and height */
+    padding: var(--spacing-8xl) var(--spacing-3xl);
+    background-color: var(--profile-bg);
+    min-height: calc(100vh - var(--navbar-height, 60px) - var(--spacing-4xl));
+    box-sizing: border-box;
 }
 
 .profile-card {
-    background-color: #ffffff;
-    border-radius: 12px; /* Slightly more rounded corners */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow for depth */
-    padding: 30px;
+    background-color: var(--background-color-white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 6px 12px var(--profile-card-shadow);
+    padding: var(--spacing-6xl);
     text-align: center;
     width: 100%;
-    max-width: 550px; /* Slightly wider card for better content flow */
-    margin-top: 30px; /* Increased top margin */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth hover effects */
+    max-width: 550px;
+    margin-top: var(--spacing-6xl);
+    transition: transform var(--transition-medium) ease-in-out, box-shadow var(--transition-medium) ease-in-out;
 }
 
 .profile-card:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--profile-card-hover-shadow);
 }
 
 .profile-avatar {
-    width: 130px; /* Slightly larger avatar */
+    width: 130px;
     height: 130px;
-    border-radius: 50%;
-    background-color: #e0e0e0;
-    margin: 0 auto 25px; /* Increased bottom margin */
+    border-radius: var(--border-radius-full);
+    background-color: var(--disabled-bg); /* Reusing disabled-bg */
+    margin: 0 auto var(--spacing-5xl);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 52px; /* Larger initial for better visibility */
-    color: #555;
-    border: 4px solid #3367D6; /* Thicker border */
+    font-size: var(--font-size-avatar-initial);
+    color: #555; /* Specific color for avatar initial */
+    border: 4px solid var(--profile-avatar-border);
     overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for the avatar */
+    box-shadow: 0 2px 6px var(--shadow-light); /* Reusing shadow-light */
 }
 
 .profile-avatar img {
@@ -333,87 +401,173 @@ textarea {
 }
 
 .profile-username {
-    font-size: 2.8em; /* Slightly larger and more impactful */
-    color: #2c3e50; /* Darker, more prominent color */
-    margin-bottom: 8px;
+    font-size: var(--font-size-5xl);
+    color: var(--profile-username-color);
+    margin-bottom: var(--spacing-sm);
     word-wrap: break-word;
-    font-weight: 700; /* Bolder for emphasis */
+    font-weight: 700;
 }
 
 .profile-name {
-    font-size: 1.2em; /* Slightly larger */
-    color: #7f8c8d; /* Muted grey for secondary info */
-    margin-bottom: 30px; /* Increased bottom margin */
+    font-size: var(--font-size-2xl);
+    color: var(--profile-name-color);
+    margin-bottom: var(--spacing-6xl);
     font-weight: 500;
 }
 
 .profile-actions {
-    display: flex; /* Use flexbox for better button alignment */
-    justify-content: center; /* Center buttons */
-    gap: 15px; /* Space between buttons */
-    margin-bottom: 30px; /* Space before details section */
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-6xl);
 }
 
 .profile-actions a,
 .profile-actions button {
-    display: inline-flex; /* Use inline-flex for vertical alignment in buttons */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: #3498db; /* A vibrant blue for actions */
-    color: white;
-    padding: 12px 28px; /* More padding for a softer look */
-    border-radius: 8px; /* More rounded buttons */
+    background-color: var(--profile-action-blue);
+    color: var(--text-color-light);
+    padding: var(--spacing-lg) 28px;
+    border-radius: var(--border-radius-md);
     text-decoration: none;
-    font-size: 1.1em;
-    font-weight: 600; /* Bolder text for actions */
-    border: none; /* Remove default button border */
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    transition: background-color var(--transition-medium) ease, transform var(--transition-fast) ease;
 }
 
 .profile-actions a:hover,
-.profile-actions button:not(.disabled):hover { /* Apply hover to non-disabled buttons */
-    background-color: #2980b9; /* Darker blue on hover */
-    transform: translateY(-2px); /* Slight lift on hover */
+.profile-actions button:not(.disabled):hover {
+    background-color: var(--profile-action-blue-hover);
+    transform: translateY(-2px);
 }
 
 .profile-actions button.disabled {
-    background-color: #cccccc; /* Greyed out for disabled state */
+    background-color: var(--border-color-light); /* Reusing border-color-light */
     cursor: not-allowed;
     opacity: 0.8;
 }
 
 .profile-details {
-    margin-top: 35px; /* More space above details */
+    margin-top: 35px; /* Specific top margin */
     text-align: left;
-    border-top: 1px solid #ececec; /* Lighter, subtle top border */
-    padding-top: 25px; /* Padding above content after border */
+    border-top: 1px solid #ececec; /* Specific border color */
+    padding-top: var(--spacing-5xl);
 }
 
 .profile-details h3 {
-    color: #34495e; /* Darker heading color */
-    margin-bottom: 18px; /* More space below heading */
-    font-size: 1.6em; /* Larger heading */
+    color: var(--profile-details-heading);
+    margin-bottom: var(--spacing-2xl);
+    font-size: var(--font-size-4xl);
     font-weight: 600;
 }
 
 .profile-details strong {
-    color: #4a69bd; /* A distinct color for the label */
-    font-size: 1.05em;
-    margin-bottom: 8px; /* Space below "BIO:" label */
-    display: block; /* Make it a block element to take full width */
+    color: var(--profile-details-label);
+    font-size: 1.05em; /* Specific font size */
+    margin-bottom: var(--spacing-sm);
+    display: block;
 }
 
 .profile-details pre {
-    margin-bottom: 0; /* Remove default bottom margin from pre */
-    line-height: 1.7; /* Increased line height for better readability */
-    color: #555;
-    background-color: #f8f8f8; /* Slightly different background for the bio area */
-    padding: 15px;
-    border-radius: 8px;
-    white-space: pre-wrap; /* This is crucial for newlines and wrapping */
-    word-break: break-word; /* Ensures long words don't overflow */
-    border: 1px solid #e0e0e0; /* Subtle border for the bio box */
-    font-family: inherit; /* Use the default font family for better integration */
-    font-size: 1em; /* Ensure font size is consistent */
+    margin-bottom: 0;
+    line-height: 1.7; /* Specific line height */
+    color: #555; /* Specific color for pre text */
+    background-color: var(--bio-bg);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-md);
+    white-space: pre-wrap;
+    word-break: break-word;
+    border: 1px solid var(--bio-border);
+    font-family: inherit;
+    font-size: var(--font-size-base);
 }
+
+/* --- Avatar Selection Grid Styles --- */
+.avatar-selection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .avatar-selection-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 768px) {
+    .avatar-selection-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+.avatar-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border: 2px solid #e5e7eb; /* Specific grey border */
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 200ms var(--transition-ease-in-out);
+}
+
+.avatar-option:hover {
+    border-color: #60a5fa; /* Specific blue border on hover */
+}
+
+.avatar-option input[type="radio"] {
+    display: none;
+}
+
+.avatar-option input[type="radio"]:checked + img {
+    border: 4px solid #2563eb; /* Specific blue border when checked */
+    border-radius: 0.5rem;
+}
+
+.avatar-option img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.avatar-option p {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #4b5563; /* Specific grey color for text */
+}
+.no-avatar-placeholder {
+        width: 5rem; /* Match img width */
+        height: 5rem; /* Match img height */
+        background-color: #f3f4f6; /* A light gray background */
+        border-radius: 0.5rem; /* Match img border-radius */
+        margin-bottom: 0.5rem; /* Match img margin-bottom */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem; /* Size for the emoji icon */
+        color: #9ca3af; /* Gray color for the icon */
+        border: 2px dashed #d1d5db; /* A dashed border to indicate empty state */
+    }
+    .no-avatar-placeholder {
+        width: 5rem; /* Match img width */
+        height: 5rem; /* Match img height */
+        background-color: #f3f4f6; /* A light gray background */
+        border-radius: 0.5rem; /* Match img border-radius */
+        margin-bottom: 0.5rem; /* Match img margin-bottom */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem; /* Size for the emoji icon */
+        color: #9ca3af; /* Gray color for the icon */
+        border: 2px dashed #d1d5db; /* A dashed border to indicate empty state */
+    }
