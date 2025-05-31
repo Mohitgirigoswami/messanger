@@ -1,9 +1,10 @@
 from flask import session
 from flask_socketio import emit, join_room
-from app.models import db, user_friend, Message
+from app.models import db, user_friend, Message,Users
 from datetime import datetime
 
 def register_events(socketio):
+    
     @socketio.on('connect')
     def connect():
         user_id = session.get('id')
@@ -68,3 +69,22 @@ def register_events(socketio):
             'content': content,
             'timestamp': msg.timestamp.isoformat()  # Convert to ISO format for JSON
         }, room=f'user_{recipient_id}')
+        
+    @socketio.on('get_notifications')
+    def handle_get_not():
+        user_id = session.get('id')
+        if not user_id:
+            return
+
+        msgs = Message.query.filter_by(recipient_id=user_id, read=False).all()
+
+        notifications = []
+        for msg in msgs:
+            sender = Users.query.get(msg.sender_id)
+            notifications.append({
+                'id': msg.id,
+                'sender': sender.username,
+                'content': msg.text,
+            })
+
+        emit('notification_list', {'notifications': notifications})

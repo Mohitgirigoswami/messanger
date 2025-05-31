@@ -4,7 +4,7 @@ socket.on('connect', function () {
 });
 
 function add_friend(id) {
-        document.getElementById("btn_"+id).classList.add("disabled");
+        document.getElementById("btn_" + id).classList.add("disabled");
         socket.emit('add_friend', { friend_id: id });
 }
 socket.on('add_friend_response', function (data) {
@@ -13,7 +13,7 @@ socket.on('add_friend_response', function (data) {
 
 socket.on('new_message', function (data) {
         console.log('New message received:', data);
-        if(data['recipient_id'] == parseInt(document.getElementById('userid').textContent)){
+        if (data['recipient_id'] == parseInt(document.getElementById('userid').textContent)) {
                 has_read(data['sender_id']);
         }
         console.log(parseInt(document.getElementById('friendid').textContent), parseInt(document.getElementById('userid').textContent));
@@ -38,3 +38,29 @@ function send_message(id) {
 function has_read(id) {
         socket.emit('has_read', { friend_id: id });
 }
+
+document.getElementById('notificationLink')?.addEventListener('click', function (e) {
+        e.preventDefault();
+        socket.emit('get_notifications');
+        const panel = document.getElementById('notificationPanel');
+        if (panel) {
+                panel.style.display = (panel.style.display === 'none') ? 'block' : 'none';
+        }
+});
+
+
+
+socket.on('notification_list', function (data) {
+        const notificationList = document.getElementById('notificationList');
+        notificationList.innerHTML = '';
+        data.notifications.forEach(n => {
+                const item = document.createElement('a');
+                item.href = `/message/${n.sender}`;
+                item.className = 'notification-item';
+                item.innerHTML = `
+            <strong>From:</strong> ${n.sender}<br>
+            ${n.content}
+        `;
+                notificationList.appendChild(item);
+        });
+});
