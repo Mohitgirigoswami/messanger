@@ -1,14 +1,173 @@
 {% extends 'base.html' %}
 
+{% block title %}Nexlo - Connect & Chat with Friends{% endblock %}
+
 {% block content %}
-<div class="center-div container flex-column" style="margin-top: 40px;">
-    <h1>Welcome to Messenger App!</h1>
-    <p>
-        This is a simple and secure messaging platform where you can chat with friends in real time.<br>
-        Register or log in to start messaging.
-    </p>
-    <div class="container" style="margin-top: 30px;">
-        <a href="{{ url_for('main.home') }}" class="btn">Start Messaging</a>
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>Welcome to Nexlo: Your Hub for Seamless Connections</h1>
+        <p class="tagline">
+            Connect, share, and stay in touch with friends and loved ones, effortlessly.
+        </p>
+        <p class="description">
+            Nexlo is more than just a chat app; it's where your conversations come alive. Enjoy real-time messaging, secure communication, and a vibrant space to share your moments.
+        </p><div class="center-div">
+        <div class="cta-button-wrapper">
+            <a href="{{ url_for('main.home') }}" class="btn">Connect on Nexlo</a>
+        </div></div>
     </div>
-</div>
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='images/chat_illustration.png') }}" alt="People chatting on Nexlo" style="max-width: 100%; height: auto; border-radius: 8px;"></div>
+
+<section class="features-section">
+    <div class="feature-item">
+        <h3>Real-time Conversations</h3>
+        <p>Experience instant messaging with friends, ensuring you never miss a beat.</p>
+    </div>
+    <div class="feature-item">
+        <h3>Secure & Private</h3>
+        <p>Your privacy is our priority. Chat confidently with end-to-end security measures.</p>
+    </div>
+    <div class="feature-item">
+        <h3>Connect Globally</h3>
+        <p>Find and connect with friends from anywhere, making new connections simple.</p>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block head %}
+<style>
+    /* Styles specific to the index page, complementing main.css */
+    .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 60px 40px;
+        background-color: #f8f9fa; /* Light background for the hero section */
+        color: #333;
+        text-align: left;
+        flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        gap: 30px; /* Space between content and image */
+    }
+
+    .hero-content {
+        flex: 1; /* Allows content to grow */
+        min-width: 300px; /* Ensures it doesn't shrink too much */
+        padding-right: 30px; /* Space from the image */
+    }
+    
+    .hero-section h1 {
+        font-size: 3.5em;
+        margin-bottom: 20px;
+        color: #007BFF; /* Using the blue from your main.css */
+        line-height: 1.2;
+    }
+
+    .hero-section .tagline {
+        font-size: 1.5em;
+        margin-bottom: 25px;
+        color: #555;
+    }
+
+    .hero-section .description {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 35px;
+    }
+
+    .cta-button-wrapper {
+        max-width: 250px; /* Constrain button width */
+    }
+
+    .hero-image {
+        flex: 1; /* Allows image to grow */
+        min-width: 300px; /* Ensures it doesn't shrink too much */
+        text-align: center;
+    }
+
+    .features-section {
+        display: flex;
+        justify-content: space-around;
+        padding: 60px 40px;
+        background-color: white;
+        text-align: center;
+        flex-wrap: wrap;
+        gap: 20px; /* Space between feature items */
+    }
+
+    .feature-item {
+        flex: 1;
+        min-width: 280px;
+        max-width: 350px; /* Limit max width for better appearance */
+        margin: 0; /* Removed margin as gap handles spacing */
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .feature-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2); /* Blue shadow on hover */
+    }
+
+    .feature-item h3 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        color: #007BFF; /* Using the blue from your main.css */
+    }
+
+    .feature-item p {
+        font-size: 1em;
+        line-height: 1.5;
+        color: #666;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .hero-section {
+            flex-direction: column;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-content {
+            padding-right: 0;
+            margin-bottom: 30px;
+            min-width: unset; /* Allow it to shrink */
+        }
+
+        .hero-image {
+            min-width: unset; /* Allow it to shrink */
+            max-width: 90%; /* Adjust image size on small screens */
+        }
+
+        .hero-section h1 {
+            font-size: 2.5em;
+        }
+
+        .hero-section .tagline {
+            font-size: 1.2em;
+        }
+
+        .cta-button-wrapper {
+            max-width: 80%; /* Make button wider on small screens */
+            margin: 0 auto; /* Center the button */
+        }
+
+        .features-section {
+            flex-direction: column;
+            padding: 40px 20px;
+        }
+
+        .feature-item {
+            min-width: unset;
+            max-width: 100%; /* Full width on small screens */
+            margin: 0; /* Remove margin as gap handles spacing */
+        }
+    }
+    
+</style>
 {% endblock %}

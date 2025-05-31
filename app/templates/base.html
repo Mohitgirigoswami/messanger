@@ -3,21 +3,49 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}My App{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>{% block title %}Nexlo - Chatting with Friends{% endblock %}</title>
+
+    <meta name="description" content="Nexlo is a new way to connect and chat with your friends. Join conversations, share moments, and stay in touch easily.">
+    <meta name="keywords" content="nexlo, chat, messenger, social, friends, messaging, communication, Mohit Giri Goswami">
+    <meta name="author" content="Mohit Giri Goswami">
+    <meta name="robots" content="index, follow">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% set brand_image_url = url_for('static', filename='images/nexlo_brand_image.png') %}
+
+    <meta property="og:title" content="Nexlo - Chat with Friends">
+    <meta property="og:description" content="Nexlo: Connect and chat with your friends seamlessly.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url_root }}">
+    <meta property="og:image" content="{{ brand_image_url }}">
+    <meta property="og:image:alt" content="Nexlo Brand Image">
+    <meta property="og:site_name" content="Nexlo">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nexlo - Chat with Friends">
+    <meta name="twitter:description" content="Nexlo: Connect and chat with your friends seamlessly.">
+    <meta name="twitter:image" content="{{ brand_image_url }}">
+
+    <link rel="icon" href="{{ brand_image_url }}" type="image/x-icon"> 
+    <link rel="apple-touch-icon" href="{{ brand_image_url }}">
+
+    <meta name="theme-color" content="#3367D6">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
         integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
         crossorigin="anonymous"></script>
+    
     <script src="{{url_for('static',filename='js/main.js')}}" defer></script>
+
     {% block head %}{% endblock %}
 </head>
 
 <body>
     <nav class="navbar">
         <div class="navbar-container">
-            <a href="{{ url_for('main.index') }}" class="navbar-brand">Messenger</a>
+            <a href="{{ url_for('main.index') }}" class="navbar-brand">Nexlo</a>
             <a href="{{ url_for('main.home') }}">Home</a>
             <a href="{{ url_for('main.search') }}">Search</a>
             {% if session.get('id') %}
@@ -31,15 +59,19 @@
             {% endif %}
         </div>
     </nav>
+
     <div id="notificationPanel" class="notification-panel" style="display: none;">
         <div class="notification-header">
             <span>Notifications</span>
-            <button onclick="document.getElementById('notificationPanel').style.display='none';" id="closeNotificationPanel" class="close-btn">×</button>
+            <button onclick="document.getElementById('notificationPanel').style.display='none';" id="closeNotificationPanel" class="close-btn" aria-label="Close notifications panel">×</button>
         </div>
         <div id="notificationList" class="notification-list">
         </div>
     </div>
+
     {% block content %}{% endblock %}
+
+    {% block scripts %}{% endblock %}
 </body>
 
 </html>
