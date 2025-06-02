@@ -2,7 +2,6 @@ from flask import render_template, session, redirect, url_for,request
 from . import main_bp
 from app.models import Users,user_friend, db,Message,Avtar_links
 from app.utils import is_valid
-
 @main_bp.route('/')
 def index():
     return render_template('main/index.html')
@@ -32,7 +31,7 @@ def search():
         has_searched = True
         to_search = request.form.get("username_to_search")
         search_results = Users.query.filter(
-            Users.username.like(f"{to_search}%"),
+            Users.username.like(f"{to_search.lower()}%"),
             Users.id != session.get('id')
         ).all()
         return render_template('main/search.html',has_searched=has_searched,current_user=current_user,username_to_search=to_search,search_results=search_results)
@@ -58,6 +57,7 @@ def message(username):
 def profile(username):
     if not session.get('id'):
         return redirect(url_for("main.index"))
+    
     user = Users.query.filter_by(username=username).first()
     is_self = 0 if user.id != session.get('id') else 1
     is_frnd = 1 if not is_self and user_friend.query.filter_by(user_id=session.get('id') ,friend_id = user.id).first() else 0

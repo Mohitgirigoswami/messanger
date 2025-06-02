@@ -9,7 +9,7 @@ def login():
     session.clear()
     error = None
     if request.method == 'POST':
-        username = request.form.get('username')
+        username = request.form.get('username').lower()
         password = request.form.get('password')
         user = Users.query.filter_by(username=username).first()
         if user is None or not check_password_hash(user.password_hash, password):
@@ -27,7 +27,7 @@ def login():
 def register():
     error = None
     if request.method == 'POST':
-        username = request.form.get('username')
+        username = request.form.get('username').lower()
         password = request.form.get('password')
         first_name = request.form.get('first_name')
         last_name = request.form.get('last_name')
