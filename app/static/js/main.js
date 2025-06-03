@@ -68,6 +68,7 @@ document.getElementById('notificationLink1')?.addEventListener('click', function
 });
 
 
+
 socket.on('notification_list', function (data) {
         const notificationList = document.getElementById('notificationList');
         notificationList.innerHTML = '';
