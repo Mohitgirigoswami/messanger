@@ -1,0 +1,27 @@
+{
+  "name": "messanger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:css": "npx @tailwindcss/cli -i ./app/static/css/input.css -o ./app/static/css/output.css --watch",
+    "build:css": "npx @tailwindcss/cli -i ./app/static/css/input.css -o ./app/static/css/output.css --minify",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohitgirigoswami/messanger.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Mohitgirigoswami/messanger/issues"
+  },
+  "homepage": "https://github.com/Mohitgirigoswami/messanger#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.8",
+    "tailwindcss": "^4.1.8"
+  }
+}

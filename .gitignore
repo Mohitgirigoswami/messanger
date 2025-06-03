@@ -7,3 +7,11 @@
 /app/main/__pycache__/
 /app/__pycache__/
 # Ignore Python cache files
+# Ignore Node.js and frontend build files
+node_modules/
+npm-debug.log
+yarn-error.log
+.pnpm-store/
+dist/
+build/
+app/static/css/output.css
