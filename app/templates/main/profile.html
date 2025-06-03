@@ -7,7 +7,7 @@
     {% if user %}
     <div class="profile-card bg-gray-200 h-[100%] w-[90vw] max-w-[500px] m-5 bg-white-300 border-2 border-gray-500 p-5 rounded-[15px] shadow-xl flex flex-col justify-center items-center">
         <div class="profile-avatar border-2 border-gray-500 bg-white mt-10 rounded-full">
-            <img class="w-[50vw] max-h-[250px] max-w-[250px]  h-[50vw]" src="{{avatar_link}}" alt="Avatar">
+            <img class="w-[50vw] rounded-full max-h-[250px] max-w-[250px]  h-[50vw]" src="{{avatar_link}}" alt="Avatar">
         </div>
         <h1 class="profile-username text-3xl text-center text-indigo-600 font-bold pb-0 p-5">{{ user.username }}</h1>
         <p class="profile-name text-[20px] text-center text-gray-600">{{ user.first_name + ' ' +user.last_name }}</p>
