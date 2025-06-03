@@ -44,7 +44,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('auth.login',error="you can now login"))
-    return render_template('auth/register.html')
+    return render_template('auth/login.html')
 
 @auth_bp.route('/logout', methods=['GET','POST'])
 def logout():

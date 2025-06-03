@@ -68,8 +68,7 @@
                 <a class="text-2xl text-amber-100 hover:text-amber-400 py-1 sm:py-0" href="{{ url_for('auth.logout') }}">Logout</a>
                 <a class="text-2xl text-amber-100 hover:text-amber-400 py-1 sm:py-0" href="{{ url_for('main.profile', username=session.get('username')) }}">Profile</a>
                 {% else %}
-                <a class="text-2xl text-amber-100 hover:text-amber-400 py-1 sm:py-0" href="{{ url_for('auth.login') }}">Login</a>
-                <a class="text-2xl text-amber-100 hover:text-amber-400 py-1 sm:py-0" href="{{ url_for('auth.register') }}">Register</a>
+                <a class="text-2xl text-amber-100 hover:text-amber-400 py-1 sm:py-0" href="{{ url_for('auth.login') }}">Join Now</a>
                 {% endif %}
             </div>
         </div>
