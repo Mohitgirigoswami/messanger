@@ -1,178 +1,48 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}Nexlo - Connect & Chat with Friends{% endblock %}
+{% block title %}Nexlo - Connect with Friends{% endblock %}
 
 {% block content %}
-<div class="hero-section">
-    <div class="hero-content">
-        <h1>Welcome to Nexlo: Your Hub for Seamless Connections</h1>
-        <p class="tagline">
+<div class="hero-section flex flex-col w-screen lg:w-[85vw] lg:mx-[auto]">
+    <div class="hero-content flex flex-col bg-gray-100 p-2 sm:p-5 sm:my-10 items-center m-4 mb-0 pb-5 rounded-xl shadow-xl">
+        <h1 class="text-5xl sm:text-[8vh] lg:text-[12vh] sm:py-20 sm:px-[5vw] lg:px-[15vw] text-center text-indigo-700 font-Montserrat font-bold p-5">Welcome to Nexlo: Your Hub for Seamless Connections</h1>
+        <p class="font-Montserrat tagline px-3 max-w-screen text-gray-700 font-bold italic text-xl sm:text-[3vw] lg:px-[12vw] sm:py-[2vh]  lg:leading-[3rem]">
             Connect, share, and stay in touch with friends and loved ones, effortlessly.
         </p>
-        <p class="description">
+        <p class="description max-w-screen text-gray-700 text-[20px] p-[20px] pt-5 font-Open-Sans sm:text-[2.5vw]  sm:py-[2vw] lg:px-[12vw]">
             Nexlo is more than just a chat app; it's where your conversations come alive. Enjoy real-time messaging, secure communication, and a vibrant space to share your moments.
-        </p><div class="center-div">
-        <div class="cta-button-wrapper">
-            <a href="{{ url_for('main.home') }}" class="btn">Connect on Nexlo</a>
-        </div></div>
-    </div>
-    {# The hero-image div containing the chat_illustration.png has been removed #}
-    <div class="hero-image" style="display:none;">
-        {# You can optionally keep this div but hide it, or remove it entirely #}
+        </p>
+        <div class="center-div">
+            <div class="cta-button-wrapper bg-indigo-600 w-fit p-4 rounded-xl text-2xl text-white">
+                <a href="/home" class="">Connect on Nexlo</a>
+            </div>
+        </div>
     </div>
 
-<section class="features-section">
-    <div class="feature-item">
-        <h3>Real-time Conversations</h3>
-        <p>Experience instant messaging with friends, ensuring you never miss a beat.</p>
-    </div>
-    <div class="feature-item">
-        <h3>Secure & Private</h3>
-        <p>Your privacy is our priority. Chat confidently with end-to-end security measures.</p>
-    </div>
-    <div class="feature-item">
-        <h3>Connect Globally</h3>
-        <p>Find and connect with friends from anywhere, making new connections simple.</p>
-    </div>
-</section>
-
-{% endblock %}
-
-{% block head %}
+    <section class="features-section">
+        <div class="grid grid-cols-1 sm:grid-cols-3 p-5 mx-8">
+            <div class="feature-item bg-white shadow-xl p-3 rounded-xl mb-5 shadow-gray-500 sm:mx-5 sm:p-5 lg:p-6.5" >
+                <h3 class="text-xl text-center sm:text-[2.5vw] text-indigo-600 font-bold p-5 lg:leading-[2.6vw]">Real-time Conversations</h3>
+                <p class="font-Inter p-2 text-xl sm:text-[2.5vw] lg:leading-[2.6vw] text-gray-600 text-center">Experience instant messaging with friends, ensuring you never miss a beat.</p>
+            </div>
+            <div class="feature-item bg-white shadow-xl p-3 rounded-xl mb-5 shadow-gray-500 sm:mx-5 sm:p-5 lg:p-6.5" >
+                <h3 class="text-xl text-center sm:text-[2.5vw] text-indigo-600 font-bold p-5 lg:leading-[2.6vw]">Secure & Private</h3>
+                <p class="font-Inter p-2 text-xl sm:text-[2.5vw] lg:leading-[2.6vw] text-gray-600 text-center">Your privacy is our priority. Chat confidently with end-to-end security measures.</p>
+            </div>
+            <div class="feature-item bg-white shadow-xl p-3 rounded-xl mb-5 shadow-gray-500 sm:mx-5 sm:p-5 lg:p-6.5" >
+                <h3 class="text-xl text-center sm:text-[2.5vw] text-indigo-600 font-bold p-5 lg:leading-[2.6vw]">Connect Globally</h3>
+                <p class="font-Inter p-2 text-xl sm:text-[2.5vw] lg:leading-[2.6vw] text-gray-600 text-center">Find and connect with friends from anywhere, making new connections simple.</p>
+            </div>
+        </div>
+    </section>
+</div>
 <style>
-    /* Styles specific to the index page, complementing main.css */
-    .hero-section {
-        display: flex;
-        align-items: center;
-        justify-content="center"; /* Changed to center content if no image */
-        padding: 60px 40px;
-        background-color: #f8f9fa; /* Light background for the hero section */
-        color: #333;
-        text-align: center; /* Changed to center text if no image */
-        flex-wrap: wrap; /* Allow wrapping on smaller screens */
-        gap: 30px; /* Space between content and image */
+    #encrypt{
+        overflow-x: scroll;
+        scrollbar-width: none;
     }
-
-    .hero-content {
-        flex: 1; /* Allows content to grow */
-        min-width: 300px; /* Ensures it doesn't shrink too much */
-        padding-right: 0; /* No padding needed if no image */
-        max-width: 800px; /* Constrain width for centered content */
-        margin: 0 auto; /* Center the content div */
+    body{
+        scrollbar-width: none;
     }
-    
-    .hero-section h1 {
-        font-size: 3.5em;
-        margin-bottom: 20px;
-        color: #007BFF; /* Using the blue from your main.css */
-        line-height: 1.2;
-    }
-
-    .hero-section .tagline {
-        font-size: 1.5em;
-        margin-bottom: 25px;
-        color: #555;
-    }
-
-    .hero-section .description {
-        font-size: 1.1em;
-        line-height: 1.6;
-        margin-bottom: 35px;
-    }
-
-    .cta-button-wrapper {
-        max-width: 250px; /* Constrain button width */
-        margin: 0 auto; /* Center the button */
-    }
-
-    .hero-image {
-        /* This div is now hidden or removed, so its styles are less critical for layout */
-        /* If you removed the div completely, you can remove this block. */
-        display: none; /* Explicitly hide it */
-    }
-
-    .features-section {
-        display: flex;
-        justify-content: space-around;
-        padding: 60px 40px;
-        background-color: white;
-        text-align: center;
-        flex-wrap: wrap;
-        gap: 20px; /* Space between feature items */
-    }
-
-    .feature-item {
-        flex: 1;
-        min-width: 280px;
-        max-width: 350px; /* Limit max width for better appearance */
-        margin: 0; /* Removed margin as gap handles spacing */
-        padding: 30px;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        background-color: #fff;
-        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    }
-
-    .feature-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2); /* Blue shadow on hover */
-    }
-
-    .feature-item h3 {
-        font-size: 1.8em;
-        margin-bottom: 15px;
-        color: #007BFF; /* Using the blue from your main.css */
-    }
-
-    .feature-item p {
-        font-size: 1em;
-        line-height: 1.5;
-        color: #666;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .hero-section {
-            flex-direction: column;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .hero-content {
-            padding-right: 0;
-            margin-bottom: 30px;
-            min-width: unset; /* Allow it to shrink */
-            max-width: 100%; /* Full width on small screens */
-        }
-
-        .hero-image {
-            display: none; /* Ensure it's hidden */
-        }
-
-        .hero-section h1 {
-            font-size: 2.5em;
-        }
-
-        .hero-section .tagline {
-            font-size: 1.2em;
-        }
-
-        .cta-button-wrapper {
-            max-width: 80%; /* Make button wider on small screens */
-            margin: 0 auto; /* Center the button */
-        }
-
-        .features-section {
-            flex-direction: column;
-            padding: 40px 20px;
-        }
-
-        .feature-item {
-            min-width: unset;
-            max-width: 100%; /* Full width on small screens */
-            margin: 0; /* Remove margin as gap handles spacing */
-        }
-    }
-    
 </style>
 {% endblock %}

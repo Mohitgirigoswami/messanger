@@ -4,7 +4,7 @@ socket.on('connect', function () {
 });
 
 function add_friend(id) {
-        btn = document.getElementById("add_frnd_prfl" );
+        btn = document.getElementById("add_frnd_prfl");
         if (btn) {
                 btn.classList.add('disabled');
                 btn.disabled = true;
@@ -25,9 +25,13 @@ socket.on('new_message', function (data) {
         if ((data['recipient_id'] == parseInt(document.getElementById('friendid').textContent) && data['sender_id'] == parseInt(document.getElementById('userid').textContent)) || (data['recipient_id'] == parseInt(document.getElementById('userid').textContent) && data['sender_id'] == parseInt(document.getElementById('friendid').textContent))) {
                 console.log('Message is for this chat');
                 var parent = document.getElementById('messagesContainer');
-                var messageElement = document.createElement('div');
-                messageElement.className = 'message ' + (data.sender_id == document.getElementById('userid').textContent ? 'sent' : 'received');
-                messageElement.innerText = ` ${data.content}`;
+                var messagespan = document.createElement('span');
+                messagespan.className = 'message  inline-block py-2 px-3 my-1 max-w-[75%] break-words border-white border-2 ' + (data.sender_id != document.getElementById('userid').textContent ? 'bg-indigo-100 text-slate-800 border-indigo-300 rounded-t-xl rounded-r-xl rounded-bl-xl mr-auto' : 'bg-indigo-500 text-white border-indigo-600 rounded-t-xl rounded-l-xl rounded-br-xl ml-auto');
+
+                messagespan.innerText = ` ${data.content}`;
+                messageElement = document.createElement('div');
+                messageElement.appendChild(messagespan);
+                messageElement.className = 'h-auto flex'
                 parent.appendChild(messageElement);
                 parent.scrollTop = parent.scrollHeight;
         }
@@ -49,10 +53,19 @@ document.getElementById('notificationLink')?.addEventListener('click', function 
         socket.emit('get_notifications');
         const panel = document.getElementById('notificationPanel');
         if (panel) {
-                panel.style.display = (panel.style.display === 'none') ? 'block' : 'none';
+                notificationPanel.classList.toggle('hidden'); // Toggles hidden class
+                notificationPanel.classList.toggle('flex');
         }
 });
-
+document.getElementById('notificationLink1')?.addEventListener('click', function (e) {
+        e.preventDefault();
+        socket.emit('get_notifications');
+        const panel = document.getElementById('notificationPanel');
+        if (panel) {
+                notificationPanel.classList.toggle('hidden'); // Toggles hidden class
+                notificationPanel.classList.toggle('flex');
+        }
+});
 
 
 socket.on('notification_list', function (data) {
@@ -61,10 +74,10 @@ socket.on('notification_list', function (data) {
         data.notifications.forEach(n => {
                 const item = document.createElement('a');
                 item.href = `/message/${n.sender}`;
-                item.className = 'notification-item';
+                item.className = 'notification-item p-2  text-wrap overflow-x-clip bg-yellow-50 m-2 mb-0 rounded-[8px]';
                 item.innerHTML = `
-            <strong>From:</strong> ${n.sender}<br>
-            ${n.content}
+        <strong>From:</strong> ${n.sender}<br>
+        ${n.content}
         `;
                 notificationList.appendChild(item);
         });

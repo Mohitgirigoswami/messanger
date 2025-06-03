@@ -2,36 +2,36 @@
 
 {% block content %}
 
-<div class="container cards-wrapper" id="mainhome">
-    <div class="card">
-        <form method="post">
+<div class="container grid grid-cols-1 m-auto gap-5 mt-5" id="mainhome">
+    <form method="post"><div  class="card bg-gray-200 shadow-xl hover:bg-gray-300 rounded-[25px] max-w-[500px] p-5 px-8 sm:m-auto h-[120px] w-[90vw]  mx-5 flex flex-row items-center justify-center">
+        
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <div class="form-group">
-                <label for="friend_username">search</label>
-                <input type="text" id="username_to_search" value="{{username_to_search}}" name="username_to_search"
+            
+        
+                <input type="text" id="username_to_search" value="{{username_to_search}}" name="username_to_search" class="outline-0 w-3/4 h-1/2 text-center rounded-[8px] mr-5"
                     required placeholder="Enter friend's username">
-                <input type="submit" value="Search" id="search_friend" class="btn">
-            </div>
-        </form>
-    </div>
-    {% if has_searched %}
-    <div class="card search-results">
+                <input type="submit" value="Search" id="search_friend" class="w-1/5 border-10 h-1/2 text-center bg-indigo-500 hover:bg-indigo-700 text-white p-0.5 rounded-[12px]">
+        
+        
+    </div></form>{% if has_searched %}
+    <div class="p-10 pt-0 bg-gray-200 shadow-xl hover:bg-gray-300 rounded-[25px] max-w-[500px] sm:m-auto min-h-20 mx-5 grid-cols-1 gap-4 grid">
+
+        <div class="max-w-[500px] sm:m-auto h-20 mx-5 flex items-center justify-center search-results">
+            <h2>Search Results</h2>
+        </div>
         {% if search_results %}
-        <h2>Search Results</h2>
+        {% for user in search_results %}
+        <a href="{{ url_for('main.profile', username=user.username) }}" class="no-decoration">
+            <div class="bg-gray-100 shadow-xl hover:bg-white rounded-[25px] sm:w-[min(80vw,400px)] mx-0 sm:m-auto min-h-20 flex items-center justify-center">
+                {{ user.username }} >> {{ user.first_name }} {{ user.last_name }}
+            </div>
+        </a>
+        {% endfor %}
+        {% else %}
+        <p>No users found.</p>
+        {% endif %}
     </div>
-    {% for user in search_results %}
-    <a href="{{ url_for('main.profile', username=user.username) }}" class="no-decoration">
-
-    <div class="card">
-        {{ user.username }} >> {{ user.first_name }} {{ user.last_name }}
-
-
-    </div></a>
-    {% endfor %}
-    {% else %}
-    <p>No users found.</p>
-    {% endif %}
     {%endif%}
 </div>
-</div>
+
 {% endblock %}

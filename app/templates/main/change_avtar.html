@@ -3,18 +3,18 @@
 {% block title %}choose avtar{% endblock %}
 
 {% block content %}
-<div class="container center-div flex-column">
-    <h2>choose avtar</h2>
+<div class="m-auto max-w-[600px] grid mx-5 sm:m-auto sm:mt-[30px] grid-cols-1p-5  bg-indigo-200 mt-[30px] rounded-[20px] border-2 border-indigo-400">
+    <h2 class="text-center text-[30px] font-bold p-5 max-w-[85vw] ">choose avtar</h2>
 
-    <form method="post" class="form-wrapper">
+    <form method="post" class="form-wrapper grid grid-cols-1 ">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <div class="avatar-selection-grid">
+        <div class="avatar-selection-grid overflow-auto h-[70vh] p-2 grid grid-cols-3 sm:grid-cols-5 gap-5 [scrollbar-width:none]">
             {# Loop through 'avtars' as passed from the Flask route #}
             {% for avatar in avtars %}
-            <label class="avatar-option" data-avatar-id="{{ avatar.id }}">
+            <label class="avatar-option rounded-full" data-avatar-id="{{ avatar.id }}">
                 {# Check user.avtar_id against avatar.id to mark the current avatar as checked #}
-                <input type="radio" name="avtar_id" value="{{ avatar.id }}" {% if user and user.avtar_id == avatar.id %}checked{% endif %}>
-                <img src="{{ avatar.link }}" alt="Avatar">
+                <input class="hidden" type="radio" name="avtar_id" value="{{ avatar.id }}" {% if user and user.avtar_id == avatar.id %}checked{% endif %}>
+                <img src="{{ avatar.link }}" alt="Avatar"></label>
                 
                 {% if "no_avatar.png" in avatar.link %}
                 <p>No Avatar</p>
@@ -22,13 +22,33 @@
             </label>
             {% endfor %}
         </div>
-        <button type="submit" class="btn">select avtar</button>
+        <button type="submit" class="max-h-2/3 m-auto btn bg-indigo-600 w-fit p-2 rounded-xl text-xl text-white">select avtar</button>
     </form>
 </div>
+
+<style>
+    /* ALL CUSTOM CSS IS REMOVED. Styling now uses Tailwind utilities! */
+    .selected-avatar {
+         border-color: theme('colors.indigo.800'); /* Uses Tailwind's defined indigo-600 color */
+        box-shadow: 0 0 0 5px rgba(79, 70, 229, 0.4);
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const avatarOptions = document.querySelectorAll('.avatar-option');
+        avatarOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                avatarOptions.forEach(opt => opt.classList.remove('selected-avatar'));
+                this.classList.add('selected-avatar');
+                this.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+    });
+</script>
 {% if error %}
-<div class="container center-div flex-column" style="margin-top: 20px; padding: 15px;"> {# Added margin and padding for
-    error box #}
-    <span style="color: red; font-weight: bold;">{{ error }}</span>
-</div>
-{% endif %}
+    <div class="m-auto p-5 max-w-[600px] grid mx-5 sm:m-auto sm:mt-[30px] grid-cols-1p-5  bg-indigo-200 mt-[30px] rounded-[20px] mt-5 border-2 border-indigo-400">
+        <span style="color: red; font-weight: bold;">{{ error }}</span>
+    </div>
+    {% endif %}
 {% endblock %}
