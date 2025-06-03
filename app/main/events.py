@@ -1,5 +1,5 @@
 from flask import session
-from flask_socketio import emit, join_room
+from flask_socketio import emit, join_room,leave_room
 from app.models import db, user_friend, Message,Users
 from datetime import datetime
 
@@ -14,7 +14,14 @@ def register_events(socketio):
             print(f"User {user_id} connected and joined room user_{user_id}")
         else:
             print("User connected but no session id found")
-    
+    @socketio.on('disconnect')
+    def connect():
+        user_id = session.get('id')
+        if user_id:
+            leave_room(f'user_{user_id}')
+            print(f"User {user_id} disconnected and left room user_{user_id}")
+        else:
+            print("User disconnected")
     @socketio.on("has_read")
     def handle_read(data):
         messages_to_update = Message.query.filter(
