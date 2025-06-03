@@ -14,7 +14,7 @@
             <label class="avatar-option rounded-full" data-avatar-id="{{ avatar.id }}">
                 {# Check user.avtar_id against avatar.id to mark the current avatar as checked #}
                 <input class="hidden" type="radio" name="avtar_id" value="{{ avatar.id }}" {% if user and user.avtar_id == avatar.id %}checked{% endif %}>
-                <img clss="rounded-full" src="{{ avatar.link }}" alt="Avatar"></label>
+                <img class="rounded-full" src="{{ avatar.link }}" alt="Avatar"></label>
                 
                 {% if "no_avatar.png" in avatar.link %}
                 <p>No Avatar</p>
