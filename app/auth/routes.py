@@ -6,7 +6,6 @@ from . import auth_bp
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
-    session.clear()
     error = None
     if request.method == 'POST':
         username = request.form.get('username').lower()
@@ -23,19 +22,19 @@ def login():
             return redirect(url_for('main.index'))
     return render_template('auth/login.html', error=error)
 
-@auth_bp.route('/register', methods=['GET', 'POST'])
+@auth_bp.route('/register', methods=[ 'POST'])
 def register():
     error = None
     if request.method == 'POST':
-        username = request.form.get('username').lower()
-        password = request.form.get('password')
+        username = request.form.get('username-reg').lower()
+        password = request.form.get('password-reg')
         first_name = request.form.get('first_name')
         last_name = request.form.get('last_name')
         user = Users.query.filter_by(username=username).first()
         is_strong_password, msg = is_strong(password)
         if user is not None or not is_valid(username) or not is_strong_password:
             error = "Registration failed. Please check your details and try again."
-            return render_template('auth/register.html', error=error)
+            return render_template('auth/login.html', error=error)
         user = Users(
             username=username,
             password_hash=generate_password_hash(password),
@@ -44,8 +43,8 @@ def register():
         )
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('auth.login'))
-    return render_template('auth/register.html', error=error)
+        return redirect(url_for('auth.login',error="you can now login"))
+    return render_template('auth/register.html')
 
 @auth_bp.route('/logout', methods=['GET','POST'])
 def logout():

@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="cards-wrapper ">
-    <a href="{{ url_for('main.search') }}" class="search no-decoration">
-        <div  style="min-width: 80vw;" class="card"><span>search for new friends</span></div>
+<div class="grid grid-cols-1 gap-5 mt-5">
+    <a href="{{ url_for('main.search') }}" class="search">
+        <div class="bg-gray-200 shadow-xl hover:bg-gray-300 rounded-[25px] max-w-[500px] sm:m-auto h-20 mx-5 flex items-center justify-center"><p class="text-center">search for new friends</p></div>
     </a>
     {% for friend in friends %}
     <a href="{{ url_for('main.message', username=friend.username) }}" class="no-decoration">
-        <div class="card"><span>{{ friend.username }}</span></div>
+        <div class="bg-gray-200 shadow-xl hover:bg-gray-300 rounded-[25px] max-w-[500px] sm:m-auto h-20 mx-5 flex items-center justify-center"><p class="text-center">{{ friend.username }}</p></div>
     </a>
     {% endfor %}
 </div>  

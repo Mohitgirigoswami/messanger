@@ -3,25 +3,39 @@
 <script src="{{url_for('static',filename='js/msg.js')}}" defer></script>
 {% endblock %}
 {% block content %}
-<div class="container">
-    <span class="recipient" id="recipient_username">{{ recipient.username }}</span>
-    <div class="messages" id="messagesContainer">
-        {% for msg in messages %}
-        <div class="message{% if msg.sender_id == recipient.id %} received{% else %} sent{% endif %}">
-            {{ msg.text }}
+<div class="mx-auto bg-white container mt-2 width-[calc(100vw-10rem)] grid-cols-1 grid gap-5 px-5 justify-center">
+
+    <div class="max-w-[500px] m-auto w-[85vw] messages flex flex-col p-4 rounded-[10px] bg-indigo-100 border-2 border-indigo-300"
+        id="">
+        <p class="recipient text-center text-2xl " id="recipient_username">{{ recipient.username }}</p>
+        <div id="messagesContainer" class=" overflow-auto [scrollbar-width:none] h-[65vh] border-t-2 border-indigo-300 flex-col flex">
+            {% for msg in messages %}
+            <div class="h-auto flex">
+                <span
+                    class="message inline-block py-2 px-3 my-1 max-w-[75%] break-words border-white border-2
+                    {% if msg.sender_id == recipient.id %}
+                        bg-indigo-100 text-slate-800 border-indigo-300 rounded-t-xl rounded-r-xl rounded-bl-xl mr-auto
+                    {% else %}
+                        bg-indigo-500 text-white border-indigo-600 rounded-t-xl rounded-l-xl rounded-br-xl ml-auto
+                    {% endif %}
+                    ">
+                    {{ msg.text }}
+                </span>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        
     </div>
 
     <span class="hidden" id="friendid" style="display:hidden;">{{recipient.id}}</span>
     <span class="hidden" id="userid">{{session.get('id')}}</span>
     <form onsubmit="send_message({{ recipient.id }}); return false;">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <div class="form-group">
-            <textarea id="messageInput" name="message" class="form-control" rows="3"
+        <div class="flex-row rounded-2xl p-2 mx-auto flex w-[85vw] max-w-[500px] border-2 border-gray-200">
+            <textarea id="messageInput" name="message" class="outline-0 form-control w-[70vw] max-w-[412px] " rows="2"
                 placeholder="Type your message..."></textarea>
-        </div>
-        <button type="submit" id="submitBtnmsg" class="btn btn-primary">Send</button>
-    </form>
+        
+        <button type="submit" id="submitBtnmsg" class="btn btn-primary w-[15vw] max-w-[88px] bg-indigo-600 text-white rounded-xl hover:bg-indigo-800">Send</button>
+    </div></form>
 </div>
 {% endblock %}

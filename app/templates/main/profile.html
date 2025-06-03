@@ -3,31 +3,32 @@
 {% block title %}{{ user.username }}'s Profile - Nexlo{% endblock %}
 
 {% block content %}
-<div class="profile-container">
+<div class="profile-container py-10 sm:pt-5 flex items-center justify-center">
     {% if user %}
-    <div class="profile-card">
-        <div class="profile-avatar">
-            <img src="{{avatar_link}}" alt="Avatar">
+    <div class="profile-card bg-gray-200 h-[100%] w-[90vw] max-w-[500px] m-5 bg-white-300 border-2 border-gray-500 p-5 rounded-[15px] shadow-xl flex flex-col justify-center items-center">
+        <div class="profile-avatar border-2 border-gray-500 bg-white mt-10 rounded-full">
+            <img class="w-[50vw] max-h-[250px] max-w-[250px]  h-[50vw]" src="{{avatar_link}}" alt="Avatar">
         </div>
-        <h1 class="profile-username">{{ user.username }}</h1>
-        <p class="profile-name">{{ user.first_name + ' ' +user.last_name }}</p>
+        <h1 class="profile-username text-3xl text-center text-indigo-600 font-bold pb-0 p-5">{{ user.username }}</h1>
+        <p class="profile-name text-[20px] text-center text-gray-600">{{ user.first_name + ' ' +user.last_name }}</p>
 
-        <div class="profile-actions">{%if not is_self%}
-            <a href="{{ url_for('main.message', username=user.username) }}">Message</a>
+        <div class="profile-actions flex flex-row mt-8">
+            {%if not is_self%}
+            <a class="bg-indigo-600 w-fit p-2 rounded-xl text-xl text-white mr-2" href="{{ url_for('main.message', username=user.username) }}">Message</a>
             {% if not is_frnd %}
-            <button type="button" class="" id="add_frnd_prfl" onclick="add_friend({{ user.id }})">Add Friend</button>
+            <button class="bg-indigo-600 w-fit p-2 rounded-xl text-xl text-white" type="button" class="" id="add_frnd_prfl" onclick="add_friend({{ user.id }})">Add Friend</button>
             {% else %}
-            <button type="button" class="disabled" id="add_frnd_prfl" disabled>Already Friends</button>
+            <button type="button" class="disabled bg-indigo-600 w-fit p-2 rounded-xl text-xl text-white" id="add_frnd_prfl" disabled>Already Friends</button>
             {% endif %}
-            {% else %}
-            <a href="{{ url_for('main.edit_profile') }}">Edit Profile</a>
-            {% endif%}
+        {% else %}
+            <a class="bg-indigo-600 w-fit p-2 rounded-xl text-xl text-white" href="{{ url_for('main.edit_profile') }}">Edit Profile</a>
+        {% endif%}
         </div>
 
-        <div class="profile-details">
-            <h3>About {{ user.username }}</h3>
-            <strong>BIO : </strong>
-            <pre>{{user.bio}}</pre>
+        <div class="profile-details flex flex-col w-[100%] mt-8 pt-8 p-2 border-gray-500 border-t-2">
+            <h3 class="font-bold">About {{ user.username }}</h3>
+            <strong class="font-bold">BIO : </strong>
+            <pre class="h-20 m-3 bg-white mt-0 border-2 p-2 rounded-[10px] border-gray-500">{{user.bio}}</pre>
         </div>
     </div>
     {% else %}

@@ -32,6 +32,7 @@
 
     <meta name="theme-color" content="#3367D6">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script> 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
         integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
@@ -42,36 +43,59 @@
     {% block head %}{% endblock %}
 </head>
 
-<body>
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="{{ url_for('main.index') }}" class="navbar-brand">Nexlo</a>
-            <a href="{{ url_for('main.home') }}">Home</a>
-            <a href="{{ url_for('main.search') }}">Search</a>
+<body class="bg-gray-100 font-sans antialiased text-gray-800">
+    <nav id="encrypt" class="">
+        <div class="flex flex-wrap justify-between sm:justify-around w-screen bg-indigo-600 p-2.0 px-5 sm:flex-row">
+            <button id="navbarToggle" class="sm:hidden text-amber-50 focus:outline-none p-2">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h-5"></path>
+                </svg>
+            </button>
+            
+            <a href="{{ url_for('main.index') }}" class="navbar-brand font-medium text-5xl text-amber-50">Nexlo</a>
             {% if session.get('id') %}
-            <a href="#" id="notificationLink">
-                🔔 
-            </a>
-            <a href="{{ url_for('auth.logout') }}">Logout</a>
-            <a href="{{ url_for('main.profile', username=session.get('username')) }}">Profile</a>
-            {% else %}
-            <a href="{{ url_for('auth.login') }}">Login</a>
-            <a href="{{ url_for('auth.register') }}">Register</a>
-            {% endif %}
+            <a id="notificationLink" class="text-2xl text-amber-100 hover:text-amber-400 py-1 sm:py-0 sm:hidden" href="#" id="notificationLink">
+                <span class="hidden">Notification</span>🔔
+            </a>{%endif%}
+            <div id="navbarLinks" class="hidden w-full flex-col items-center sm:flex sm:flex-row sm:w-auto sm:space-x-8 sm:py-0 p-2">
+                <a class="text-2xl text-amber-100 hover:text-amber-400 py-1 sm:py-0" href="{{ url_for('main.home') }}">Home</a>
+                <a class="text-2xl text-amber-100 hover:text-amber-400 py-1 sm:py-0" href="{{ url_for('main.search') }}">Search</a>
+                
+                {% if session.get('id') %}
+                <a id="notificationLink1" class="hidden text-2xl text-amber-100 hover:text-amber-400 py-1 sm:py-0 sm:flex" href="#" id="notificationLink">
+                    <span class="">Notification</span>🔔
+                </a>
+                <a class="text-2xl text-amber-100 hover:text-amber-400 py-1 sm:py-0" href="{{ url_for('auth.logout') }}">Logout</a>
+                <a class="text-2xl text-amber-100 hover:text-amber-400 py-1 sm:py-0" href="{{ url_for('main.profile', username=session.get('username')) }}">Profile</a>
+                {% else %}
+                <a class="text-2xl text-amber-100 hover:text-amber-400 py-1 sm:py-0" href="{{ url_for('auth.login') }}">Login</a>
+                <a class="text-2xl text-amber-100 hover:text-amber-400 py-1 sm:py-0" href="{{ url_for('auth.register') }}">Register</a>
+                {% endif %}
+            </div>
         </div>
     </nav>
 
-    <div id="notificationPanel" class="notification-panel" style="display: none;">
-        <div class="notification-header">
-            <span>Notifications</span>
-            <button onclick="document.getElementById('notificationPanel').style.display='none';" id="closeNotificationPanel" class="close-btn" aria-label="Close notifications panel">×</button>
+    <div id="notificationPanel" class="bg-gray-200 notification-panel w-60 h-80 sm:w-80 p-2 rounded-[25px] absolute right-5 top-40 flex-col hidden" >
+        <div class="flex justify-between items-center pb-2 border-b border-gray-200 mb-2">
+            <span class="font-semibold text-lg text-gray-900">Notifications</span>
+            <button onclick="document.getElementById('notificationPanel').style.display='none';" id="closeNotificationPanel" class="text-gray-500 hover:text-gray-700 text-2xl font-bold" aria-label="Close notifications panel">&times;</button>
         </div>
-        <div id="notificationList" class="notification-list">
+        <div id="notificationList" class="notification-list flex flex-col mb-2 overflow-auto [scrollbar-width:none]">
+            
         </div>
     </div>
 
     {% block content %}{% endblock %}
 
+    <script>
+        // This script block should also ideally be in base.html if it's common functionality
+        if (navbarToggle) {
+            navbarToggle.addEventListener('click', function() {
+                navbarLinks.classList.toggle('hidden'); // Toggles hidden class
+                navbarLinks.classList.toggle('flex');   // Toggles flex class
+            });
+        }
+    </script>
     {% block scripts %}{% endblock %}
 </body>
 
